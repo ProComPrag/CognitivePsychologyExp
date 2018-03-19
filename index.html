@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+
+		<title>XPrag experiments</title>
+
+		<!-- fonts from Google fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Serif:400,700|Playfair+Display:700" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+		<!-- js dependencies -->
+		<script src="node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="node_modules/mustache/mustache.min.js"></script>
+
+		<!-- config -->
+		<script src="config.js"></script>
+
+		<!-- local js files -->
+		<script src="scripts/exp.js"></script>
+		<script src="scripts/views.js"></script>
+		<script src="scripts/main.js"></script>
+	</head>
+	<body>
+		<noscript>This task requires JavaScript. Please enable your JavaScript.</noscript>
+	</body>
+
+	<main>
+		Loading...
+	</main>
+
+	<!-- Mustache templates below. Each template is a view with a separate HTML structure. -->
+
+	<!-- Introduction view -->
+	<script id="intro-view" type="x-tmpl-mustache">
+	<div class='view'>
+		{{# logo }}
+		<img class="logo" src={{ logo }} height="20" />
+		{{/ logo }}
+		{{# title }}
+		<h1 class="title">{{ title }}</h1>
+		{{/ title }}
+		{{^ title }}
+		<h1 class="title">Welcome!</h1>
+		{{/ title }}
+		{{# text }}
+		<section class="text-container">
+			<p class="text">{{ text }}</p>
+		</section>
+		{{/ text }}
+		{{# button }}
+		<button id="next">{{ button }}</button>
+		{{/ button }}
+		{{^ button }}
+		<button id="next">Next</button>
+		{{/ button }}
+	</div>
+	</script>
+
+	<!-- Instructions view -->
+	<script id="instructions-view" type="x-tmpl-mustache">
+	<div class="view">
+		{{# title }}
+		<h1 class="title">{{ title }}</h1>
+		{{/ title }}
+		{{^ title }}
+		<h1 class="title">Instructions</h1>
+		{{/ title }}
+		{{# text }}
+		<section class="text-container">
+			<p class="text">{{ text }}</p>
+		</section>
+		{{/ text }}
+		{{# button }}
+		<button id="next">{{ button }}</button>
+		{{/ button }}
+		{{^ button }}
+		<button id="next">Next</button>
+		{{/ button }}
+	</view>
+	</script>
+
+	<!-- Trial View -->
+	<script id="trial-view" type="x-tmpl-mustache">
+	<div class="view">
+		<h1>Trial</h1>
+		<button id="next">Next</button>
+	</div>
+	</script>
+
+	<!-- Pause View -->
+	<script id="pause-view" type="x-tmpl-mustache">
+	<div class="view">
+		<h1>Pause</h1>
+		<button id="next">Next</button>
+	</div>
+	</script>
+</html>
