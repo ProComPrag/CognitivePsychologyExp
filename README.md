@@ -39,7 +39,7 @@ This project uses the following JS dependencies:
 * [jQuery][1]
 * [Mustache templates][2]
 
-installed through npm (a package manager for JS libraries). If you do not have npm installed on your machine, you can follow the installation instructions on [their website][3].
+installed through npm (a package manager for JS libraries). If you do not have npm installed on your machine, you can follow the instructions on [their website][3].
 
 
 In the terminal on your machine do the following commands:

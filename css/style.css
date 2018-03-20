@@ -35,3 +35,28 @@ button:focus {
 	background-color: grey;
 	color: white;
 }
+
+.stimulus-container {
+	height: 300px;
+	margin: 0 auto;
+	position: relative;
+	width: 400px;
+}
+
+.stimulus {
+	background-color: grey;
+	height: 120px;
+	left: 140px;
+	position: absolute;
+	top: 90px;
+	width: 120px;
+}
+
+/* does not display the element */
+.nodisplay {
+	display: none;
+}
+
+.target {
+	color: red;
+}

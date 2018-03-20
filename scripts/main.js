@@ -20,41 +20,24 @@ cp.findNextView = function() {
 	if (this.view.name === 'intro') {
 		this.view = initInstructionsView();
 	} else if (this.view.name === 'instructions') {
-		this.view = initTrialView(this.exp[this.block][this.CT]);
-
-		console.log(this.block);
-		console.log(this.CT);
-		console.log(this.exp[this.block][this.CT]);
-
+		this.view = initReactionTimeView(this.data[this.CT], this.CT);
 		this.CT ++;
-	} else if (this.view.name === 'trial' && this.block === 2 && this.CT + 1 === this.exp[2].length) {
-		console.log('end');
-
-	} else if ((this.view.name === 'trial') && (this.CT + 1 === this.exp[this.block].length) && (this.block <= 2)){
-		this.block++;
-		this.CT = 0;
-
-		console.log(this.block);
-		console.log(this.CT);
-		console.log('pause');
-
+	// the last one of the reaction block renders PauseView
+	} else if ((this.view.name === 'reaction') && (this.data[this.CT]['block'] !== 'rt')) {
 		this.view = initPauseView();
-	} else if (this.view.name === 'pause') {
-		this.view = initTrialView(this.exp[this.block][this.CT]);
-
-		console.log(this.block);
-		console.log(this.CT);
-		console.log(this.exp[this.block][this.CT]);
-
-		this.CT++;
-	} else if ((this.view.name === 'trial') && !(this.CT + 1 === this.exp[this.block].length)) {
-		this.view = initTrialView(this.exp[this.block][this.CT]);
-
-		console.log(this.block);
-		console.log(this.CT);
-		console.log(this.exp[this.block][this.CT]);
-
-		this.CT++;
+	} else if ((this.view.name === 'reaction') && (this.data[this.CT]['block'] === 'rt')) {
+		this.view = initReactionTimeView(this.data[this.CT], this.CT);
+		this.CT ++;
+	} else if ((this.view.name === 'pause') && (this.data[this.CT]['block'] === 'goNoGo')) {
+		this.view = initGoNoGoView(this.data[this.CT], this.CT);
+		this.CT ++;
+	} else if ((this.view.name === 'goNoGo') && (this.data[this.CT]['block'] !== 'goNoGo')) {
+		this.view = initPauseView();
+	} else if ((this.view.name === 'goNoGo') && (this.data[this.CT]['block'] === 'goNoGo')) {
+		this.view = initGoNoGoView(this.data[this.CT], this.CT);
+		this.CT ++;
+	} else {
+		console.log('not finished yet');
 	}
  };
 
@@ -62,8 +45,8 @@ cp.findNextView = function() {
 // called by document ready function on lines 3-12
 cp.init = function() {
 	this.view = initIntroView();
-	this.exp = initExp();
-	this.block = 0; // up to 2 (3 overall)
+	this.data = initExp();
 	// CT - current trial in a block
 	this.CT = 0; // up to as many as there are in the block strarting from 0
+	console.log(this.data[this.CT]);
 };

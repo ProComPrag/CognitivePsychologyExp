@@ -1,5 +1,5 @@
 var initExp = function() {
-	var trials = {};
+	var trials = [];
 
 	// function that shuffles the items in a list
 	var shuffleComb = function(comb) {
@@ -32,12 +32,12 @@ var initExp = function() {
 			{'block': 'rt', 'stimulus': 'square'}
 		],
 		[
-			{'block': 'go/noGo', 'stimulus': 'circle', 'target': target},
-			{'block': 'go/noGo', 'stimulus': 'circle', 'target': target},
-			{'block': 'go/noGo', 'stimulus': 'circle', 'target': target},
-			{'block': 'go/noGo', 'stimulus': 'square', 'target': target},
-			{'block': 'go/noGo', 'stimulus': 'square', 'target': target},
-			{'block': 'go/noGo', 'stimulus': 'square', 'target': target}
+			{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
+			{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
+			{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
+			{'block': 'goNoGo', 'stimulus': 'square', 'target': target},
+			{'block': 'goNoGo', 'stimulus': 'square', 'target': target},
+			{'block': 'goNoGo', 'stimulus': 'square', 'target': target}
 		],
 		[
 			{'block': 'discrimination', 'stimulus': 'circle', 'f': keys[0], 'j': keys[1]},
@@ -49,12 +49,25 @@ var initExp = function() {
 		]
 	];
 
-	console.log(trials_raw);
-
+	// shuffles the items in each block and adds the items to a list holding all the trials
+	// the items in trials are the following block order: reaction time task, go/noGo and discriminatio
 	for (var i = 0; i < trials_raw.length; i++) {
-		trials[i] = shuffleComb(trials_raw[i]);
+		// shuffles the items in each list in 'trials_raw'
+		var temp = shuffleComb(trials_raw[i]);
+
+		// takes each item from each list in 'trials_raw'
+		// and adds it to a list 'trials'
+		for (var j = 0; j<temp.length; j++) {
+			trials.push(temp[j]);
+		}
 	}
 
-	console.log(trials)
+	// adds trial number to each object in 'trials'
+	for (var i = 0; i<trials.length; i++) {
+		trials[i]['trial_number'] = i + 1;
+	}
+
+	console.log(trials);
+
 	return trials;
 };
