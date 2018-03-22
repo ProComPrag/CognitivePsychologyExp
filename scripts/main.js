@@ -22,22 +22,43 @@ cp.findNextView = function() {
 	} else if (this.view.name === 'instructions') {
 		this.view = initReactionTimeView(this.data[this.CT], this.CT);
 		this.CT ++;
-	// the last one of the reaction block renders PauseView
+		console.log('1');
+	// checks whether the reaction block has finished and if it has, moves to pause
 	} else if ((this.view.name === 'reaction') && (this.data[this.CT]['block'] !== 'rt')) {
 		this.view = initPauseView();
+		console.log('2');
+	// checks whether there are more trials from the reaction block, if so, moves to reaction time
 	} else if ((this.view.name === 'reaction') && (this.data[this.CT]['block'] === 'rt')) {
 		this.view = initReactionTimeView(this.data[this.CT], this.CT);
 		this.CT ++;
+		console.log('3');
+	// if the view shown is pause and the next block is goNoGo, moves to GoNoGo
 	} else if ((this.view.name === 'pause') && (this.data[this.CT]['block'] === 'goNoGo')) {
 		this.view = initGoNoGoView(this.data[this.CT], this.CT);
 		this.CT ++;
+		console.log('4');
+	// if the view shown is goNoGo and the next block is not goNoGo (all the goNoGo trials has been shown)
+	// moves to pause
 	} else if ((this.view.name === 'goNoGo') && (this.data[this.CT]['block'] !== 'goNoGo')) {
 		this.view = initPauseView();
+		console.log('5');
+	// if there are more goNoGo trials to show, renders goNoGo view
 	} else if ((this.view.name === 'goNoGo') && (this.data[this.CT]['block'] === 'goNoGo')) {
 		this.view = initGoNoGoView(this.data[this.CT], this.CT);
 		this.CT ++;
+		console.log('6');
+	} else if ((this.view.name === 'pause') && (this.data[this.CT]['block'] === 'discrimination')) {
+		this.view = initDiscriminationView(this.data[this.CT], this.CT);
+		this.CT ++;
+		console.log('7');
+	} else if ((this.view.name === 'discrimination') && (this.CT === this.data.length)) {
+		console.log('inits Subj Info View');
+	} else if ((this.view.name === 'discrimination') && (this.data[this.CT]['block'] === 'discrimination')) {
+		this.view = initDiscriminationView(this.data[this.CT], this.CT);
+		this.CT ++;
+		console.log('8');
 	} else {
-		console.log('not finished yet');
+		console.log('something is not right');
 	}
  };
 
@@ -48,5 +69,5 @@ cp.init = function() {
 	this.data = initExp();
 	// CT - current trial in a block
 	this.CT = 0; // up to as many as there are in the block strarting from 0
-	console.log(this.data[this.CT]);
+	this.block = 'rt';
 };

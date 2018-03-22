@@ -39,7 +39,6 @@ var initReactionTimeView = function(trialInfo, CT) {
 	var view = {};
 	view.name = 'reaction';
 	view.template = $("#trial-view").html();
-	console.log(view.template);
 	// renderts the template
 	$('main').html(Mustache.render(view.template, {
 		text: 'Press SPACE when you see an image on the screen'
@@ -83,6 +82,7 @@ var initReactionTimeView = function(trialInfo, CT) {
 		}
 	};
 
+	console.log(cp.data[CT]);
 	return view;
 };
 
@@ -109,10 +109,10 @@ var initGoNoGoView = function(trialInfo, CT) {
 
 	// shows the stimulus after a some period of time (pause line 47)
 	// records the time when the stimulus was displayed
+	$('#stimulus').removeClass('nodisplay');
 	setTimeout(function() {
-		$('#stimulus').removeClass('nodisplay');
 		dateStart = Date.now();
-
+/*
 		$('body').on('keyup', handleKeyUp);
 
 		if (stimulus !== target) {
@@ -120,14 +120,17 @@ var initGoNoGoView = function(trialInfo, CT) {
 				// records response
 				cp.data[CT].response = 'correct';
 				cp.findNextView();
-			}, 2000);			
-		}
+			}, 2000);
+		}*/
 
-	}, pause);
+		cp.findNextView();
+
+	}, 1000);
 
 	// checks whether the key pressed is SPACE
 	// handleKeyUp() is called when a key is pressed
 	var handleKeyUp = function(e) {
+		console.log(e.which);
 		// if enter was pressed and the reposne is correct
 		if ((e.which === 32) && (stimulus === target)) {
 			// removes handleKeyUp event fro the body
@@ -159,13 +162,14 @@ var initGoNoGoView = function(trialInfo, CT) {
 		}
 	};
 
+	console.log(cp.data[CT]);
 	return view;
 };
 
 
 var initDiscriminationView = function(trialInfo, CT) {
 	var view = {};
-	view.name = 'goNoGo';
+	view.name = 'discrimination';
 	view.template = $("#trial-view").html();
 	$('main').html(Mustache.render(view.template, {
 		text: 'Press F when you see a ' + trialInfo['f'] + ' and J when you see a ' + trialInfo['j']
@@ -177,7 +181,90 @@ var initDiscriminationView = function(trialInfo, CT) {
 	// pause: assigns a random number between 1200 ms and 2700 ms
 	var pause = Math.floor(Math.random()*(2700-1200+1)+1200);
 	var dateStart, dateEnd, rt;
-}
+
+	// if the stimulus in this trial is a circle, turns the sqaure to a circle
+	// by addid css border radius to the sqaure
+	if (trialInfo['stimulus'] === 'circle') {
+		$('#stimulus').css('border-radius', '50%');
+	}
+
+	// shows the stimulus after a some period of time (pause line 81)
+	// records the time when the stimulus was displayed
+	setTimeout(function() {
+		$('#stimulus').removeClass('nodisplay');
+		dateStart = Date.now();
+		$('body').on('keyup', handleKeyUp);
+	}, pause);
+
+	var handleKeyUp = function(e) {
+		if ((stimulus === trialInfo['f']) && (e.which === 70))  {
+			// removes handleKeyUp event from the body
+			$('body').off('keyup', handleKeyUp);
+			// sateEnd: records the time space was pressed
+			dateEnd = Date.now();
+			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
+			rt = dateEnd - dateStart;
+			// adds a 'rt' key to the object
+			cp.data[CT].rt = rt;
+			// key pressed
+			cp.data[CT].pressed = 'f';
+			// records response
+			cp.data[CT].response = 'correct';
+			// moves to the next view
+			cp.findNextView();
+		} else if ((stimulus === trialInfo['j']) && (e.which === 70)) {
+			// removes handleKeyUp event from the body
+			$('body').off('keyup', handleKeyUp);
+			// sateEnd: records the time space was pressed
+			dateEnd = Date.now();
+			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
+			rt = dateEnd - dateStart;
+			// adds a 'rt' key to the object
+			cp.data[CT].rt = rt;
+			// key pressed
+			cp.data[CT].pressed = 'f';
+			// records response
+			cp.data[CT].response = 'incorrect';
+			// moves to the next view
+			cp.findNextView();
+		} else if ((stimulus === trialInfo['j']) && (e.which === 74)) {
+			// removes handleKeyUp event from the body
+			$('body').off('keyup', handleKeyUp);
+			// sateEnd: records the time space was pressed
+			dateEnd = Date.now();
+			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
+			rt = dateEnd - dateStart;
+			// adds a 'rt' key to the object
+			cp.data[CT].rt = rt;
+			// key pressed
+			cp.data[CT].pressed = 'j';
+			// records response
+			cp.data[CT].response = 'correct';
+			// moves to the next view
+			cp.findNextView();
+		} else if ((stimulus === trialInfo['f']) && (e.which === 74)) {
+			// removes handleKeyUp event from the body
+			$('body').off('keyup', handleKeyUp);
+			// sateEnd: records the time space was pressed
+			dateEnd = Date.now();
+			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
+			rt = dateEnd - dateStart;
+			// adds a 'rt' key to the object
+			cp.data[CT].rt = rt;
+			// key pressed
+			cp.data[CT].pressed = 'j';
+			// records response
+			cp.data[CT].response = 'incorrect';
+			// moves to the next view
+			cp.findNextView();
+		} else {
+			console.log('some other key pressed');
+		}
+	};
+
+	console.log(cp.data[CT]);
+	return view;
+};
 
 // creates Pause View
 var initPauseView = function(pauseNumber) {
