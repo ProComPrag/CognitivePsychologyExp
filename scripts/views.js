@@ -45,11 +45,35 @@ var initReactionTimeView = function(trialInfo, CT) {
 	}));
 
 	// variables
-	var dateStart, dateEnd, rt;
 	// stimulus: the stimulus html element
 	var stimulus = $('#stimulus');
 	// pause: assigns a random number between 1200 ms and 2700 ms
 	var pause = Math.floor(Math.random()*(2700-1200+1)+1200);
+	var dateStart, dateEnd, rt;
+
+	console.log(trialInfo);
+
+	// the data that will be appended to data.out
+	// after recordData() adds more information to it
+	var trial_data = {
+		'trial_number': trialInfo['trial_number'],
+		'block': trialInfo['block'],
+		'stimulus': trialInfo['stimulus']
+	};
+
+	// records the data and moves to the next view
+	var recordData = function() {
+		// sateEnd: records the time space was pressed
+		dateEnd = Date.now();
+		// rt: reaction time (starts when the stimulus appeared until the space is pressed)
+		rt = dateEnd - dateStart;
+		// adds a 'rt' key to trial_data
+		trial_data['reading_time'] = rt;
+		// pushes trial data to data.out list
+		cp.data.out.push(trial_data);
+		// moves to the next view
+		cp.findNextView();
+	};
 
 	// if the stimulus in this trial is a circle, turns the sqaure to a circle
 	// by addid css border radius to the sqaure
@@ -71,18 +95,10 @@ var initReactionTimeView = function(trialInfo, CT) {
 		if (e.which === 32) {
 			// removes handleKeyUp event from the body
 			$('body').off('keyup', handleKeyUp);
-			// dateEnd: records the time space was pressed
-			dateEnd = Date.now();
-			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
-			rt = dateEnd - dateStart;
-			// adds a reading time (rt) key to the object
-			cp.data[CT].rt = rt;
-			// moves to the next view
-			cp.findNextView();
+			recordData();
 		}
 	};
 
-	console.log(cp.data[CT]);
 	return view;
 };
 
@@ -101,16 +117,27 @@ var initGoNoGoView = function(trialInfo, CT) {
 	var pause = Math.floor(Math.random()*(2700-1200+1)+1200);
 	var dateStart, dateEnd, rt;
 
+	// the data that will be appended to data.out
+	// after recordData() adds more information to it
+	var trial_data = {
+		'trial_number': trialInfo['trial_number'],
+		'block': trialInfo['block'],
+		'stimulus': trialInfo['stimulus'],
+		'target': trialInfo['target']
+	}
+
 	// records the data and moves to the next view
 	var recordData = function(correctness) {
 		// sateEnd: records the time space was pressed
 		dateEnd = Date.now();
 		// rt: reaction time (starts when the stimulus appeared until the space is pressed)
 		rt = dateEnd - dateStart;
-		// adds a 'rt' key to the object
-		cp.data[CT].rt = rt;
-		// records response
-		cp.data[CT].response = correctness;
+		// adds a 'rt' key to trial_data
+		trial_data['reading_time'] = rt;
+		// records response to trial_data
+		trial_data['response'] = correctness;
+		// pushes trial data to data.out list
+		cp.data.out.push(trial_data);
 		// moves to the next view
 		cp.findNextView();
 	};
@@ -167,7 +194,6 @@ var initGoNoGoView = function(trialInfo, CT) {
 
 	}, pause);
 
-	console.log(cp.data[CT]);
 	return view;
 };
 
@@ -186,6 +212,34 @@ var initDiscriminationView = function(trialInfo, CT) {
 	// pause: assigns a random number between 1200 ms and 2700 ms
 	var pause = Math.floor(Math.random()*(2700-1200+1)+1200);
 	var dateStart, dateEnd, rt;
+
+	// the data that will be appended to data.out
+	// after recordData() adds more information to it
+	var trial_data = {
+		'trial_number': trialInfo['trial_number'],
+		'block': trialInfo['block'],
+		'stimulus': trialInfo['stimulus'],
+		'f_target': trialInfo['f'],
+		'j_target': trialInfo['j']
+	}
+
+	// records the data and moves to the next view
+	var recordData = function(correctness, key) {
+		// sateEnd: records the time space was pressed
+		dateEnd = Date.now();
+		// rt: reaction time (starts when the stimulus appeared until the space is pressed)
+		rt = dateEnd - dateStart;
+		// adds a 'rt' key to trial_data
+		trial_data['reading_time'] = rt;
+		// records response to trial_data
+		trial_data['response'] = correctness;
+		// key pressed
+		trial_data['pressed'] = key;
+		// pushes trial data to data.out list
+		cp.data.out.push(trial_data);
+		// moves to the next view
+		cp.findNextView();
+	};
 
 	// if the stimulus in this trial is a circle, turns the sqaure to a circle
 	// by addid css border radius to the sqaure
@@ -209,14 +263,7 @@ var initDiscriminationView = function(trialInfo, CT) {
 			dateEnd = Date.now();
 			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
 			rt = dateEnd - dateStart;
-			// adds a 'rt' key to the object
-			cp.data[CT].rt = rt;
-			// key pressed
-			cp.data[CT].pressed = 'f';
-			// records response
-			cp.data[CT].response = 'correct';
-			// moves to the next view
-			cp.findNextView();
+			recordData('correct', 'f');
 		} else if ((stimulus === trialInfo['j']) && (e.which === 70)) {
 			// removes handleKeyUp event from the body
 			$('body').off('keyup', handleKeyUp);
@@ -224,29 +271,13 @@ var initDiscriminationView = function(trialInfo, CT) {
 			dateEnd = Date.now();
 			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
 			rt = dateEnd - dateStart;
-			// adds a 'rt' key to the object
-			cp.data[CT].rt = rt;
-			// key pressed
-			cp.data[CT].pressed = 'f';
-			// records response
-			cp.data[CT].response = 'incorrect';
-			// moves to the next view
-			cp.findNextView();
+			recordData('incorrect', 'f');
 		} else if ((stimulus === trialInfo['j']) && (e.which === 74)) {
 			// removes handleKeyUp event from the body
 			$('body').off('keyup', handleKeyUp);
 			// sateEnd: records the time space was pressed
 			dateEnd = Date.now();
-			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
-			rt = dateEnd - dateStart;
-			// adds a 'rt' key to the object
-			cp.data[CT].rt = rt;
-			// key pressed
-			cp.data[CT].pressed = 'j';
-			// records response
-			cp.data[CT].response = 'correct';
-			// moves to the next view
-			cp.findNextView();
+			recordData('correct', 'j');
 		} else if ((stimulus === trialInfo['f']) && (e.which === 74)) {
 			// removes handleKeyUp event from the body
 			$('body').off('keyup', handleKeyUp);
@@ -254,20 +285,12 @@ var initDiscriminationView = function(trialInfo, CT) {
 			dateEnd = Date.now();
 			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
 			rt = dateEnd - dateStart;
-			// adds a 'rt' key to the object
-			cp.data[CT].rt = rt;
-			// key pressed
-			cp.data[CT].pressed = 'j';
-			// records response
-			cp.data[CT].response = 'incorrect';
-			// moves to the next view
-			cp.findNextView();
+			recordData('incorrect', 'j');
 		} else {
-			console.log('some other key pressed');
+			console.log('some other key pressed; nothing happens');
 		}
 	};
 
-	console.log(cp.data[CT]);
 	return view;
 };
 

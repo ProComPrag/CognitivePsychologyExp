@@ -1,4 +1,4 @@
-var initExp = function() {
+var prepareData = function() {
 	var trials = [];
 
 	// function that shuffles the items in a list
@@ -17,19 +17,19 @@ var initExp = function() {
 		return comb;
 	};
 
-	// picks up a target shape for the go/noGo task
+	// picks up a target shape for the go/no go task
 	var target = shuffleComb(['circle', 'square'])[0];
 	// shuffles the stimuli list again to pick a stumulus for the f and j keys
 	var keys = shuffleComb(['circle', 'square']);
 
 	var trials_raw = [
 		[
-			{'block': 'rt', 'stimulus': 'circle'},
-			{'block': 'rt', 'stimulus': 'circle'},
-			{'block': 'rt', 'stimulus': 'circle'},
-			{'block': 'rt', 'stimulus': 'square'},
-			{'block': 'rt', 'stimulus': 'square'},
-			{'block': 'rt', 'stimulus': 'square'}
+			{'block': 'reaction', 'stimulus': 'circle'},
+			{'block': 'reaction', 'stimulus': 'circle'},
+			{'block': 'reaction', 'stimulus': 'circle'},
+			{'block': 'reaction', 'stimulus': 'square'},
+			{'block': 'reaction', 'stimulus': 'square'},
+			{'block': 'reaction', 'stimulus': 'square'}
 		],
 		[
 			{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
@@ -47,6 +47,9 @@ var initExp = function() {
 			{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]},
 			{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]}
 		]
+	];
+
+	var practice_trials = [
 	];
 
 	// shuffles the items in each block and adds the items to a list holding all the trials
@@ -67,7 +70,11 @@ var initExp = function() {
 		trials[i]['trial_number'] = i + 1;
 	}
 
-	console.log(trials);
+	var data = {
+		'trials': trials,
+		'practice_trials': practice_trials,
+		'out': []
+	}
 
-	return trials;
+	return data;
 };
