@@ -14,60 +14,29 @@ $('document').ready(function() {
 // an object cp (from cognitive psychology)
 var cp = {};
 
-// keeps track of the views and decided which one to show next
-// called at the end of each view in views.js
+// navigation through the views and steps in each view;
+// shows each view (in the order defined in 'config_general') for
+// the given number of steps (as defined in 'config_general')
 cp.findNextView = function() {
-	if (this.view.name === 'intro') {
-		this.view = initInstructionsView();
-	} else if (this.view.name === 'instructions') {
-		this.view = initReactionTimeView(this.data.trials[this.CT], this.CT);
-		this.CT ++;
-		console.log('1');
-	// checks whether the reaction block has finished and if it has, moves to pause
-	} else if ((this.view.name === 'reaction') && (this.data.trials[this.CT]['block'] !== 'reaction')) {
-		this.view = initPauseView();
-		console.log('2');
-	// checks whether there are more trials from the reaction block, if so, moves to reaction time
-	} else if ((this.view.name === 'reaction') && (this.data.trials[this.CT]['block'] === 'reaction')) {
-		this.view = initReactionTimeView(this.data.trials[this.CT], this.CT);
-		this.CT ++;
-		console.log('3');
-	// if the view shown is pause and the next block is goNoGo, moves to GoNoGo
-	} else if ((this.view.name === 'pause') && (this.data.trials[this.CT]['block'] === 'goNoGo')) {
-		this.view = initGoNoGoView(this.data.trials[this.CT], this.CT);
-		this.CT ++;
-		console.log('4');
-	// if the view shown is goNoGo and the next block is not goNoGo (all the goNoGo trials has been shown)
-	// moves to pause
-	} else if ((this.view.name === 'goNoGo') && (this.data.trials[this.CT]['block'] !== 'goNoGo')) {
-		this.view = initPauseView();
-		console.log('5');
-	// if there are more goNoGo trials to show, renders goNoGo view
-	} else if ((this.view.name === 'goNoGo') && (this.data.trials[this.CT]['block'] === 'goNoGo')) {
-		this.view = initGoNoGoView(this.data.trials[this.CT], this.CT);
-		this.CT ++;
-		console.log('6');
-	} else if ((this.view.name === 'pause') && (this.data.trials[this.CT]['block'] === 'discrimination')) {
-		this.view = initDiscriminationView(this.data.trials[this.CT], this.CT);
-		this.CT ++;
-		console.log('7');
-	} else if ((this.view.name === 'discrimination') && (this.CT === this.data.trials.length)) {
-		console.log('inits Subj Info View');
-	} else if ((this.view.name === 'discrimination') && (this.data.trials[this.CT]['block'] === 'discrimination')) {
-		this.view = initDiscriminationView(this.data.trials[this.CT], this.CT);
-		this.CT ++;
-		console.log('8');
+	// shows the same view template
+	if (this.currentViewStepCounter < config_general.viewSteps[this.currentViewCounter]) {
+		this.view = window[config_general.viewFunctions[this.currentViewCounter]](this.data.trials, this.currentViewStepCounter);
+		this.currentViewStepCounter ++;
+	// shows the next view template 
 	} else {
-		console.log('something is not right');
+		this.currentViewCounter ++; 
+		this.currentViewStepCounter = 0;
+		this.view = window[config_general.viewFunctions[this.currentViewCounter]](this.data.trials, this.currentViewStepCounter);
+		this.currentViewStepCounter ++;
 	}
- };
+};
 
 // creates and sets variables when the page is loaded.
-// called by document ready function on lines 3-12
 cp.init = function() {
-	this.view = initIntroView();
 	this.data = prepareData();
-	// CT - current trial in a block
-	this.CT = 0; // up to as many as there are in the block strarting from 0
-	this.block = 'rt';
+	
+	// initialize counters and generate first view
+	this.currentViewCounter = 0;
+	this.currentViewStepCounter = 0;
+	this.view = this.findNextView();
 };

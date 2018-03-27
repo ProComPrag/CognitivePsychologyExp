@@ -35,14 +35,33 @@ var initInstructionsView = function() {
 	return view;
 };
 
-var initReactionTimeView = function(trialInfo, CT) {
+var initBeginExpView = function() {
+	console.log('begin exp');
 	var view = {};
-	view.name = 'reaction';
+	view.name = 'beginExp';
+	view.template = $("#begin-exp-view").html();
+	// renderts the template
+	$('main').html(Mustache.render(view.template));
+
+	$('#next').on('click', function() {
+		cp.findNextView();
+	});
+
+	return view;
+};
+
+
+var initReactionTimeView = function(trials, index) {
+	var view = {};
+	view.name = 'trial';
 	view.template = $("#trial-view").html();
 	// renderts the template
 	$('main').html(Mustache.render(view.template, {
 		text: 'Press SPACE when you see an image on the screen'
 	}));
+
+	var trialInfo = trials[index];
+	console.log(trialInfo);
 
 	// variables
 	// stimulus: the stimulus html element
@@ -102,10 +121,15 @@ var initReactionTimeView = function(trialInfo, CT) {
 	return view;
 };
 
-var initGoNoGoView = function(trialInfo, CT) {
+
+var initGoNoGoView = function(trials, index) {
 	var view = {};
-	view.name = 'goNoGo';
+	view.name = 'trial';
 	view.template = $("#trial-view").html();
+
+	var trialInfo = trials[6 + index];
+	console.log(trialInfo);
+
 	$('main').html(Mustache.render(view.template, {
 		text: 'Press SPACE when you see a ' + trialInfo['target']
 	}));
@@ -127,7 +151,7 @@ var initGoNoGoView = function(trialInfo, CT) {
 	}
 
 	// records the data and moves to the next view
-	var recordData = function(correctness) {
+	var recordData = function(correctness, event) {
 		// sateEnd: records the time space was pressed
 		dateEnd = Date.now();
 		// rt: reaction time (starts when the stimulus appeared until the space is pressed)
@@ -136,6 +160,8 @@ var initGoNoGoView = function(trialInfo, CT) {
 		trial_data['reading_time'] = rt;
 		// records response to trial_data
 		trial_data['response'] = correctness;
+		// event
+		trial_data['event'] = event;
 		// pushes trial data to data.out list
 		cp.data.out.push(trial_data);
 		// moves to the next view
@@ -180,15 +206,15 @@ var initGoNoGoView = function(trialInfo, CT) {
 		// second function: waited until the image disappeared
 		startCycle(function() {
 			if (target === stimulus) {
-				recordData('correct');
+				recordData('correct', 'space');
 			} else {
-				recordData('incorrect');
+				recordData('incorrect', 'waited');
 			}
 		}, function() {
 			if (target === stimulus) {
-				recordData('incorrect');
+				recordData('incorrect', 'space');
 			} else {
-				recordData('correct');
+				recordData('correct', 'waited');
 			}
 		});
 
@@ -198,10 +224,14 @@ var initGoNoGoView = function(trialInfo, CT) {
 };
 
 
-var initDiscriminationView = function(trialInfo, CT) {
+var initDiscriminationView = function(trials, index) {
 	var view = {};
-	view.name = 'discrimination';
+	view.name = 'trial';
 	view.template = $("#trial-view").html();
+
+	var trialInfo = trials[12 + index];
+	console.log(trialInfo);
+
 	$('main').html(Mustache.render(view.template, {
 		text: 'Press F when you see a ' + trialInfo['f'] + ' and J when you see a ' + trialInfo['j']
 	}));
@@ -307,6 +337,34 @@ var initPauseView = function(pauseNumber) {
 	$('#next').on('click', function() {
 		cp.findNextView();
 	});
+
+	return view;
+};
+
+var initPostTestView = function() {
+	var view = {};
+	view.name = 'postTest';
+	view.template = $('#post-test-view').html();
+
+	$('main').html(Mustache.render(view.template, {
+		title: '',
+		text: ''
+	}));
+
+	$('#next').on('click', function() {
+		cp.findNextView();
+	});
+
+	return view;
+};
+
+
+var initThanksView = function() {
+	var view = {};
+	view.name = 'thanks';
+	view.template = $('#thanks-view').html();
+
+	$('main').html(Mustache.render(view.template));
 
 	return view;
 };

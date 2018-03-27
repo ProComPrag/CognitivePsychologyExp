@@ -16,6 +16,7 @@
 
 		<!-- config -->
 		<script src="config.js"></script>
+		<script src="config/config_general.js"></script>
 
 		<!-- local js files -->
 		<script src="scripts/exp.js"></script>
@@ -84,13 +85,20 @@
 	<!-- Trial View -->
 	<script id="trial-view" type="x-tmpl-mustache">
 	<div class="view">
-		<h1>Trial</h1>
 		{{# text }}
 		<h2>{{ text }}</h2>
 		{{/ text }}
 		<div class="stimulus-container">
 			<div class="stimulus nodisplay" id="stimulus"></div>
 		</div>
+	</div>
+	</script>
+
+	<!-- Pause View -->
+	<script id="begin-exp-view" type="x-tmpl-mustache">
+	<div class="view">
+		<p>Now that you have acquainted yourself the procedure of the task, the actual experiment will begin.</p>
+		<button id="next">Next</button>
 	</div>
 	</script>
 
@@ -103,8 +111,8 @@
 	</script>
 
 	<!-- subject info view -->
-	<script id="subj-info-view" type="x-tmpl-mustache">
-	<div class="view subj-info-templ">
+	<script id="post-test-view" type="x-tmpl-mustache">
+	<div class="view post-test-templ">
 		{{# title }}
 		<h2 class="title">{{ title }}</h2>
 		{{/ title }}
@@ -148,13 +156,15 @@
 				<textarea name="comments" id="comments"
 				rows="6" cols="40"></textarea>
 			</p>
-			{{# buttonText }}
-			<button id="sends-data" class="btn next-view sends-data">{{ buttonText }}</button>
-			{{/ buttonText }}
-			{{^ buttonText }}
-			<button id="sends-data" class="btn next-view sends-data">Next</button>
-			{{/ buttonText }}
+			<button id="next">Next</button>
 		</form>
+	</div>
+	</script>
+
+	<!-- Thanks View -->
+	<script id="thanks-view" type="x-tmpl-mustache">
+	<div class="view">
+		<h1>Thank you for taking part in this experiment!</h1>
 	</div>
 	</script>
 </html>

@@ -50,6 +50,12 @@ var prepareData = function() {
 	];
 
 	var practice_trials = [
+		{'block': 'reaction', 'stimulus': 'circle'},
+		{'block': 'reaction', 'stimulus': 'square'},
+		{'block': 'goNoGo', 'stimulus': 'square', 'target': target},
+		{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
+		{'block': 'discrimination', 'stimulus': 'circle', 'f': keys[0], 'j': keys[1]},
+		{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]}
 	];
 
 	// shuffles the items in each block and adds the items to a list holding all the trials
