@@ -51,18 +51,41 @@ var initBeginExpView = function() {
 };
 
 
-var initReactionTimeView = function(trials, index) {
+var initReactionTimeView = function(index, trials) {
 	var view = {};
+	var trialInfo = trials[index];
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 	// renderts the template
 	$('main').html(Mustache.render(view.template, {
-		text: 'Press SPACE when you see an image on the screen'
+		text: 'Press SPACE when you see a shape on the screen'
 	}));
 
-	var trialInfo = trials[index];
 	console.log(trialInfo);
 
+	reactionTimeTask(trialInfo, 'trial');
+
+	return view;
+};
+
+var initReactionTimePracticeView = function(index, trials) {
+	var view = {};
+	var trialInfo = cp.data.practice_trials[index];
+	view.name = 'practice';
+	view.template = $("#trial-view").html();
+	// renderts the template
+	$('main').html(Mustache.render(view.template, {
+		text: 'Press SPACE when you see a shape on the screen'
+	}));
+
+	console.log(trialInfo);
+
+	reactionTimeTask(trialInfo, 'practice');
+
+	return view;
+};
+
+var reactionTimeTask = function(trialInfo, trialType) {
 	// variables
 	// stimulus: the stimulus html element
 	var stimulus = $('#stimulus');
@@ -70,7 +93,11 @@ var initReactionTimeView = function(trials, index) {
 	var pause = Math.floor(Math.random()*(2700-1200+1)+1200);
 	var dateStart, dateEnd, rt;
 
-	console.log(trialInfo);
+	// if the stimulus in this trial is a circle, turns the sqaure to a circle
+	// by addid css border radius to the sqaure
+	if (trialInfo['stimulus'] === 'circle') {
+		stimulus.css('border-radius', '50%');
+	}
 
 	// the data that will be appended to data.out
 	// after recordData() adds more information to it
@@ -87,18 +114,28 @@ var initReactionTimeView = function(trials, index) {
 		// rt: reaction time (starts when the stimulus appeared until the space is pressed)
 		rt = dateEnd - dateStart;
 		// adds a 'rt' key to trial_data
-		trial_data['reading_time'] = rt;
+		trial_data['reaction_time'] = rt;
 		// pushes trial data to data.out list
 		cp.data.out.push(trial_data);
 		// moves to the next view
 		cp.findNextView();
 	};
 
-	// if the stimulus in this trial is a circle, turns the sqaure to a circle
-	// by addid css border radius to the sqaure
-	if (trialInfo['stimulus'] === 'circle') {
-		stimulus.css('border-radius', '50%');
-	}
+	// checks whether the key pressed is SPACE
+	// handleKeyUp() is called when a key is pressed
+	var handleKeyUp = function(e) {
+		if (e.which === 32) {
+			// removes handleKeyUp event from the body
+			$('body').off('keyup', handleKeyUp);
+			if (trialType === 'practice') {
+				cp.findNextView();
+			} else if (trialType === 'trial') {
+				recordData();
+			} else {
+				console.log('trialTypes can be either practice or trial');
+			}
+		}
+	};
 
 	// shows the stimulus after a some period of time (pause line 81)
 	// records the time when the stimulus was displayed
@@ -108,21 +145,10 @@ var initReactionTimeView = function(trials, index) {
 		$('body').on('keyup', handleKeyUp);
 	}, pause);
 
-	// checks whether the key pressed is SPACE
-	// handleKeyUp() is called when a key is pressed
-	var handleKeyUp = function(e) {
-		if (e.which === 32) {
-			// removes handleKeyUp event from the body
-			$('body').off('keyup', handleKeyUp);
-			recordData();
-		}
-	};
-
-	return view;
 };
 
 
-var initGoNoGoView = function(trials, index) {
+var initGoNoGoView = function(index, trials) {
 	var view = {};
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
@@ -134,6 +160,31 @@ var initGoNoGoView = function(trials, index) {
 		text: 'Press SPACE when you see a ' + trialInfo['target']
 	}));
 
+	goNoGoTask(trialInfo, 'trial');
+
+	return view;
+};
+
+
+var initGoNoGoPracticeView = function(index, trials) {
+	var view = {};
+	view.name = 'practice';
+	view.template = $("#trial-view").html();
+
+	var trialInfo = cp.data.practice_trials[2 + index];
+	console.log(trialInfo);
+
+	$('main').html(Mustache.render(view.template, {
+		text: 'Press SPACE when you see a ' + trialInfo['target']
+	}));
+
+	goNoGoTask(trialInfo, 'practice');
+
+	return view;
+};
+
+
+var goNoGoTask = function(trialInfo, trialType) {
 	// variables
 	var target = trialInfo['target'];
 	var stimulus = trialInfo['stimulus'];
@@ -157,7 +208,7 @@ var initGoNoGoView = function(trials, index) {
 		// rt: reaction time (starts when the stimulus appeared until the space is pressed)
 		rt = dateEnd - dateStart;
 		// adds a 'rt' key to trial_data
-		trial_data['reading_time'] = rt;
+		trial_data['reaction_time'] = rt;
 		// records response to trial_data
 		trial_data['response'] = correctness;
 		// event
@@ -206,36 +257,38 @@ var initGoNoGoView = function(trials, index) {
 		// second function: waited until the image disappeared
 		startCycle(function() {
 			if (target === stimulus) {
-				recordData('correct', 'space');
+				if (trialType === 'practice') {
+					cp.findNextView();	
+				} else if (trialType === 'trial') {
+					recordData('correct', 'space');
+				}
 			} else {
-				recordData('incorrect', 'waited');
+				if (trialType === 'practice') {
+					cp.findNextView();	
+				} else if (trialType === 'trial') {
+					recordData('incorrect', 'space');
+				}
 			}
 		}, function() {
 			if (target === stimulus) {
-				recordData('incorrect', 'space');
+				if (trialType === 'practice') {
+					cp.findNextView();	
+				} else if (trialType === 'trial') {
+					recordData('incorrect', 'waited');
+				}
 			} else {
-				recordData('correct', 'waited');
+				if (trialType === 'practice') {
+					cp.findNextView();	
+				} else if (trialType === 'trial') {
+					recordData('correct', 'waited');
+				}
 			}
 		});
 
 	}, pause);
-
-	return view;
 };
 
-
-var initDiscriminationView = function(trials, index) {
-	var view = {};
-	view.name = 'trial';
-	view.template = $("#trial-view").html();
-
-	var trialInfo = trials[12 + index];
-	console.log(trialInfo);
-
-	$('main').html(Mustache.render(view.template, {
-		text: 'Press F when you see a ' + trialInfo['f'] + ' and J when you see a ' + trialInfo['j']
-	}));
-
+var discriminationTask = function(trialInfo, trialType) {
 	// variables
 	var target = trialInfo['target'];
 	var stimulus = trialInfo['stimulus'];
@@ -260,7 +313,7 @@ var initDiscriminationView = function(trials, index) {
 		// rt: reaction time (starts when the stimulus appeared until the space is pressed)
 		rt = dateEnd - dateStart;
 		// adds a 'rt' key to trial_data
-		trial_data['reading_time'] = rt;
+		trial_data['reaction_time'] = rt;
 		// records response to trial_data
 		trial_data['response'] = correctness;
 		// key pressed
@@ -285,6 +338,7 @@ var initDiscriminationView = function(trials, index) {
 		$('body').on('keyup', handleKeyUp);
 	}, pause);
 
+
 	var handleKeyUp = function(e) {
 		if ((stimulus === trialInfo['f']) && (e.which === 70))  {
 			// removes handleKeyUp event from the body
@@ -293,7 +347,12 @@ var initDiscriminationView = function(trials, index) {
 			dateEnd = Date.now();
 			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
 			rt = dateEnd - dateStart;
-			recordData('correct', 'f');
+
+			if (trialType === 'practice') {
+				cp.findNextView();
+			} else if (trialType === 'trial') {
+				recordData('correct', 'f');
+			}
 		} else if ((stimulus === trialInfo['j']) && (e.which === 70)) {
 			// removes handleKeyUp event from the body
 			$('body').off('keyup', handleKeyUp);
@@ -301,13 +360,24 @@ var initDiscriminationView = function(trials, index) {
 			dateEnd = Date.now();
 			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
 			rt = dateEnd - dateStart;
-			recordData('incorrect', 'f');
+
+			if (trialType === 'practice') {
+				cp.findNextView();
+			} else if (trialType === 'trial') {
+				recordData('incorrect', 'f');
+			}
 		} else if ((stimulus === trialInfo['j']) && (e.which === 74)) {
 			// removes handleKeyUp event from the body
 			$('body').off('keyup', handleKeyUp);
 			// sateEnd: records the time space was pressed
 			dateEnd = Date.now();
-			recordData('correct', 'j');
+			rt = dateEnd - dateStart;
+
+			if (trialType === 'practice') {
+				cp.findNextView();
+			} else if (trialType === 'trial') {
+				recordData('correct', 'j');
+			}
 		} else if ((stimulus === trialInfo['f']) && (e.which === 74)) {
 			// removes handleKeyUp event from the body
 			$('body').off('keyup', handleKeyUp);
@@ -315,11 +385,48 @@ var initDiscriminationView = function(trials, index) {
 			dateEnd = Date.now();
 			// rt: reaction time (starts when the stimulus appeared until the space is pressed)
 			rt = dateEnd - dateStart;
-			recordData('incorrect', 'j');
+
+			if (trialType === 'practice') {
+				cp.findNextView();
+			} else if (trialType === 'trial') {
+				recordData('incorrect', 'j');
+			}
 		} else {
 			console.log('some other key pressed; nothing happens');
 		}
 	};
+};
+
+var initDiscriminationView = function(index, trials) {
+	var view = {};
+	view.name = 'trial';
+	view.template = $("#trial-view").html();
+
+	var trialInfo = trials[12 + index];
+	console.log(trialInfo);
+
+	$('main').html(Mustache.render(view.template, {
+		text: 'Press F when you see a ' + trialInfo['f'] + ' and J when you see a ' + trialInfo['j']
+	}));
+
+	discriminationTask(trialInfo, 'trial');
+
+	return view;
+};
+
+var initDiscriminationPracticeView = function(index) {
+	var view = {};
+	view.name = 'trial';
+	view.template = $("#trial-view").html();
+
+	var trialInfo = cp.data.practice_trials[4 + index];
+	console.log(trialInfo);
+
+	$('main').html(Mustache.render(view.template, {
+		text: 'Press F when you see a ' + trialInfo['f'] + ' and J when you see a ' + trialInfo['j']
+	}));
+
+	discriminationTask(trialInfo, 'practice');
 
 	return view;
 };

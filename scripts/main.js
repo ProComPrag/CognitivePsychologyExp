@@ -20,13 +20,13 @@ var cp = {};
 cp.findNextView = function() {
 	// shows the same view template
 	if (this.currentViewStepCounter < config_general.viewSteps[this.currentViewCounter]) {
-		this.view = window[config_general.viewFunctions[this.currentViewCounter]](this.data.trials, this.currentViewStepCounter);
+		this.view = window[config_general.viewFunctions[this.currentViewCounter]](this.currentViewStepCounter, this.data.trials);
 		this.currentViewStepCounter ++;
 	// shows the next view template 
 	} else {
 		this.currentViewCounter ++; 
 		this.currentViewStepCounter = 0;
-		this.view = window[config_general.viewFunctions[this.currentViewCounter]](this.data.trials, this.currentViewStepCounter);
+		this.view = window[config_general.viewFunctions[this.currentViewCounter]](this.currentViewStepCounter, this.data.trials);
 		this.currentViewStepCounter ++;
 	}
 };
