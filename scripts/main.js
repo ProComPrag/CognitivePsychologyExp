@@ -37,6 +37,7 @@ cp.init = function() {
 	
 	// initialize counters and generate first view
 	this.currentViewCounter = 0;
+	this.pause = 'reaction';
 	this.currentViewStepCounter = 0;
 	this.view = this.findNextView();
 };

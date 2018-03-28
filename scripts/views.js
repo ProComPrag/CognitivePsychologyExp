@@ -432,14 +432,27 @@ var initDiscriminationPracticeView = function(index) {
 };
 
 // creates Pause View
-var initPauseView = function(pauseNumber) {
+var initPauseView = function(index, trials) {
 	var view = {};
 	view.name = 'pause';
 	view.template = $("#pause-view").html();
+	var text;
+
+	if (cp.pause === 'reaction') {
+		text = 'instructions for the Go / No-Go task';
+		console.log(text);
+		cp.pause = 'goNoGo'
+	} else if (cp.pause === 'goNoGo') {
+		text = 'Instructions for the discrimination task';
+		console.log(text);
+		cp.pause = 'discrimination';
+	}
+
+	console.log(trials[index]['block']);
 
 	$('main').html(Mustache.render(view.template, {
-/*		text: text
-*/	}));
+		text: text
+	}));
 
 	$('#next').on('click', function() {
 		cp.findNextView();

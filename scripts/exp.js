@@ -27,8 +27,6 @@ var prepareData = function() {
 			{'block': 'reaction', 'stimulus': 'circle'},
 			{'block': 'reaction', 'stimulus': 'circle'},
 			{'block': 'reaction', 'stimulus': 'circle'},
-			{'block': 'reaction', 'stimulus': 'circle'},
-			{'block': 'reaction', 'stimulus': 'square'},
 			{'block': 'reaction', 'stimulus': 'square'},
 			{'block': 'reaction', 'stimulus': 'square'},
 			{'block': 'reaction', 'stimulus': 'square'}
@@ -37,8 +35,6 @@ var prepareData = function() {
 			{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
 			{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
 			{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
-			{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
-			{'block': 'goNoGo', 'stimulus': 'square', 'target': target},
 			{'block': 'goNoGo', 'stimulus': 'square', 'target': target},
 			{'block': 'goNoGo', 'stimulus': 'square', 'target': target},
 			{'block': 'goNoGo', 'stimulus': 'square', 'target': target}
@@ -47,8 +43,6 @@ var prepareData = function() {
 			{'block': 'discrimination', 'stimulus': 'circle', 'f': keys[0], 'j': keys[1]},
 			{'block': 'discrimination', 'stimulus': 'circle', 'f': keys[0], 'j': keys[1]},
 			{'block': 'discrimination', 'stimulus': 'circle', 'f': keys[0], 'j': keys[1]},
-			{'block': 'discrimination', 'stimulus': 'circle', 'f': keys[0], 'j': keys[1]},
-			{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]},
 			{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]},
 			{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]},
 			{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]}
@@ -58,12 +52,9 @@ var prepareData = function() {
 	var practice_trials = [
 		{'block': 'reaction', 'stimulus': 'circle'},
 		{'block': 'reaction', 'stimulus': 'square'},
-		{'block': 'reaction', 'stimulus': 'square'},
 		{'block': 'goNoGo', 'stimulus': 'square', 'target': target},
 		{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
-		{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
 		{'block': 'discrimination', 'stimulus': 'circle', 'f': keys[0], 'j': keys[1]},
-		{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]},
 		{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]}
 	];
 
