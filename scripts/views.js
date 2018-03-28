@@ -153,7 +153,7 @@ var initGoNoGoView = function(index, trials) {
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = trials[6 + index];
+	var trialInfo = trials[(trials.length / 3) + index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
@@ -171,7 +171,7 @@ var initGoNoGoPracticeView = function(index, trials) {
 	view.name = 'practice';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = cp.data.practice_trials[2 + index];
+	var trialInfo = cp.data.practice_trials[(cp.data.practice_trials.length / 3) + index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
@@ -402,7 +402,7 @@ var initDiscriminationView = function(index, trials) {
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = trials[12 + index];
+	var trialInfo = trials[2*(trials.length / 3) + index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
@@ -419,7 +419,7 @@ var initDiscriminationPracticeView = function(index) {
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = cp.data.practice_trials[4 + index];
+	var trialInfo = cp.data.practice_trials[2*(cp.data.practice_trials.length / 3) + index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
