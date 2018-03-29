@@ -40,7 +40,9 @@ var initBeginExpView = function() {
 	view.name = 'beginExp';
 	view.template = $("#begin-exp-view").html();
 	// renderts the template
-	$('main').html(Mustache.render(view.template));
+	$('main').html(Mustache.render(view.template, {
+		text: config_views.beginExp.text
+	}));
 
 	$('#next').on('click', function() {
 		cp.findNextView();
@@ -74,6 +76,7 @@ var initReactionTimePracticeView = function(index, trials) {
 	view.template = $("#trial-view").html();
 	// renderts the template
 	$('main').html(Mustache.render(view.template, {
+		title: 'Practice',
 		text: 'Press SPACE when you see a shape on the screen'
 	}));
 
@@ -174,6 +177,7 @@ var initGoNoGoPracticeView = function(index, trials) {
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
+		title: 'Practice',
 		text: 'Press SPACE when you see a ' + trialInfo['target']
 	}));
 
@@ -422,6 +426,7 @@ var initDiscriminationPracticeView = function(index) {
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
+		title: 'Practice',
 		text: 'Press F when you see a ' + trialInfo['f'] + ' and J when you see a ' + trialInfo['j']
 	}));
 
@@ -482,8 +487,8 @@ var initPostTestView = function() {
 	view.template = $('#post-test-view').html();
 
 	$('main').html(Mustache.render(view.template, {
-		title: '',
-		text: ''
+		title: config_views.postTest.title,
+		text: config_views.postTest.text
 	}));
 
 	$('#next').on('click', function() {
@@ -499,7 +504,9 @@ var initThanksView = function() {
 	view.name = 'thanks';
 	view.template = $('#thanks-view').html();
 
-	$('main').html(Mustache.render(view.template));
+	$('main').html(Mustache.render(view.template, {
+		message: config_views.thanks.message
+	}));
 
 	return view;
 };

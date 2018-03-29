@@ -16,17 +16,7 @@ var config_views = {
 		// instruction's text
 		"text": "...",
 		// instuction's slide proceeding button text
-		"buttonText": "to Task 1"
-	},
-
-	// instructions for each task
-	"blockInstructions": {
-		"title": "Instructions"
-	},
-
-	// practice trial view
-	"practice": {
-		"title": "Practice trial"
+		"buttonText": "Next"
 	},
 
 	// begin experiment view
@@ -35,10 +25,9 @@ var config_views = {
 	},
 
 	// subject info view
-	"subjInfo": {
-		"title": "Additional Info",
-		"text": "Answering the following questions is optional, but will help us understand your answers.",
-		"buttonText": "Continue",
+	"postTest": {
+		"title": "Additional Information",
+		"text": "Answering the following questions is optional, but will help us understand your answers."
 	},
 
 	// thanks view

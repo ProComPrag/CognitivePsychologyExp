@@ -87,6 +87,7 @@
 		{{# text }}
 		<p>{{{ text }}}</p>
 		{{/ text }}
+		<p>First you will go to a practice trial for this task.</p>
 		<button id="next">Next</button>
 	</div>
 	</script>
@@ -94,6 +95,9 @@
 	<!-- Trial View -->
 	<script id="trial-view" type="x-tmpl-mustache">
 	<div class="view">
+		{{# title }}
+		<h1>{{ title }}</h1>
+		{{/ title }}
 		{{# text }}
 		<h2>{{ text }}</h2>
 		{{/ text }}
@@ -106,7 +110,12 @@
 	<!-- Pause View -->
 	<script id="begin-exp-view" type="x-tmpl-mustache">
 	<div class="view">
-		<p>Now that you have acquainted yourself the procedure of the task, the actual task will begin.</p>
+		{{# text }}
+		<p>{{ text }}</p>
+		{{/ text }}
+		{{^ text }}
+		<p>Now that you have aquainted yourself with the task, the actual task will begin.</p>
+		{{/ text }}
 		<button id="next">Next</button>
 	</div>
 	</script>
@@ -174,7 +183,12 @@
 	<!-- Thanks View -->
 	<script id="thanks-view" type="x-tmpl-mustache">
 	<div class="view">
+		{{# message }}
+		<h1>{{ message }}</h1>
+		{{/ message }}
+		{{^ message }}
 		<h1>Thank you for taking part in this experiment!</h1>
+		{{/ message }}
 	</div>
 	</script>
 </html>
