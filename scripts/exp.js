@@ -18,9 +18,11 @@ var prepareData = function() {
 	};
 
 	// picks up a target shape for the go/no go task
-	var target = shuffleComb(['circle', 'square'])[0];
+	var space_target = shuffleComb(['circle', 'square'])[0];
 	// shuffles the stimuli list again to pick a stumulus for the f and j keys
 	var keys = shuffleComb(['circle', 'square']);
+	var f_target = keys[0];
+	var j_target = keys[1];
 
 	var trials_raw = [
 		[
@@ -32,30 +34,30 @@ var prepareData = function() {
 			{'block': 'reaction', 'stimulus': 'square'}
 		],
 		[
-			{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
-			{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
-			{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
-			{'block': 'goNoGo', 'stimulus': 'square', 'target': target},
-			{'block': 'goNoGo', 'stimulus': 'square', 'target': target},
-			{'block': 'goNoGo', 'stimulus': 'square', 'target': target}
+			{'block': 'goNoGo', 'stimulus': 'circle', 'target': space_target},
+			{'block': 'goNoGo', 'stimulus': 'circle', 'target': space_target},
+			{'block': 'goNoGo', 'stimulus': 'circle', 'target': space_target},
+			{'block': 'goNoGo', 'stimulus': 'square', 'target': space_target},
+			{'block': 'goNoGo', 'stimulus': 'square', 'target': space_target},
+			{'block': 'goNoGo', 'stimulus': 'square', 'target': space_target}
 		],
 		[
-			{'block': 'discrimination', 'stimulus': 'circle', 'f': keys[0], 'j': keys[1]},
-			{'block': 'discrimination', 'stimulus': 'circle', 'f': keys[0], 'j': keys[1]},
-			{'block': 'discrimination', 'stimulus': 'circle', 'f': keys[0], 'j': keys[1]},
-			{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]},
-			{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]},
-			{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]}
+			{'block': 'discrimination', 'stimulus': 'circle', 'f': f_target, 'j': j_target},
+			{'block': 'discrimination', 'stimulus': 'circle', 'f': f_target, 'j': j_target},
+			{'block': 'discrimination', 'stimulus': 'circle', 'f': f_target, 'j': j_target},
+			{'block': 'discrimination', 'stimulus': 'square', 'f': f_target, 'j': j_target},
+			{'block': 'discrimination', 'stimulus': 'square', 'f': f_target, 'j': j_target},
+			{'block': 'discrimination', 'stimulus': 'square', 'f': f_target, 'j': j_target}
 		]
 	];
 
 	var practice_trials = [
 		{'block': 'reaction', 'stimulus': 'circle'},
 		{'block': 'reaction', 'stimulus': 'square'},
-		{'block': 'goNoGo', 'stimulus': 'square', 'target': target},
-		{'block': 'goNoGo', 'stimulus': 'circle', 'target': target},
-		{'block': 'discrimination', 'stimulus': 'circle', 'f': keys[0], 'j': keys[1]},
-		{'block': 'discrimination', 'stimulus': 'square', 'f': keys[0], 'j': keys[1]}
+		{'block': 'goNoGo', 'stimulus': 'square', 'target': space_target},
+		{'block': 'goNoGo', 'stimulus': 'circle', 'target': space_target},
+		{'block': 'discrimination', 'stimulus': 'circle', 'f': f_target, 'j': j_target},
+		{'block': 'discrimination', 'stimulus': 'square', 'f': f_target, 'j': j_target}
 	];
 
 	// shuffles the items in each block and adds the items to a list holding all the trials
@@ -77,6 +79,9 @@ var prepareData = function() {
 	}
 
 	var data = {
+		'space_target': space_target,
+		'f_target': f_target,
+		'j_target': j_target,
 		'trials': trials,
 		'practice_trials': practice_trials,
 		'out': []

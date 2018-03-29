@@ -13,15 +13,17 @@
 		<!-- js dependencies -->
 		<script src="node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="node_modules/mustache/mustache.min.js"></script>
-
-		<!-- config -->
-		<script src="config.js"></script>
-		<script src="config/config_general.js"></script>
-
+		
 		<!-- local js files -->
 		<script src="scripts/exp.js"></script>
 		<script src="scripts/views.js"></script>
 		<script src="scripts/main.js"></script>
+
+		<!-- config -->
+		<script src="config.js"></script>
+		<script src="config/config_general.js"></script>
+		<script src="config/config_views.js"></script>
+
 	</head>
 	<body>
 		<noscript>This task requires JavaScript. Please enable your JavaScript.</noscript>
@@ -36,9 +38,6 @@
 	<!-- Introduction view -->
 	<script id="intro-view" type="x-tmpl-mustache">
 	<div class='view'>
-		{{# logo }}
-		<img class="logo" src={{ logo }} height="20" />
-		{{/ logo }}
 		{{# title }}
 		<h1 class="title">{{ title }}</h1>
 		{{/ title }}
@@ -82,6 +81,16 @@
 	</view>
 	</script>
 
+	<!-- instructions for each block -->
+	<script id="block-instructions-view" type="x-tmpl-mustache">
+	<div class="view">
+		{{# text }}
+		<p>{{{ text }}}</p>
+		{{/ text }}
+		<button id="next">Next</button>
+	</div>
+	</script>
+
 	<!-- Trial View -->
 	<script id="trial-view" type="x-tmpl-mustache">
 	<div class="view">
@@ -97,7 +106,7 @@
 	<!-- Pause View -->
 	<script id="begin-exp-view" type="x-tmpl-mustache">
 	<div class="view">
-		<p>Now that you have acquainted yourself the procedure of the task, the actual experiment will begin.</p>
+		<p>Now that you have acquainted yourself the procedure of the task, the actual task will begin.</p>
 		<button id="next">Next</button>
 	</div>
 	</script>
@@ -106,9 +115,7 @@
 	<script id="pause-view" type="x-tmpl-mustache">
 	<div class="view">
 		<h1>Pause</h1>
-		{{# text }}
-		<p>{{ text }}</p>
-		{{/ text }}
+		<p>This task is finished! To proceed to the next press 'next'.</p>
 		<button id="next">Next</button>
 	</div>
 	</script>

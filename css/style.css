@@ -8,7 +8,7 @@ body {
 
 main {
 	max-width: 960px;
-	margin: 30px auto;
+	margin: 50px auto;
 }
 
 h1,
@@ -17,11 +17,15 @@ h3 {
 	text-align: center;
 }
 
+p {
+	text-align: center;
+}
+
 button {
 	background-color: white;
 	border-radius: 2px;
-	color: grey;
-	border: 3px solid grey;
+	color: #5187BA;
+	border: 3px solid #5187BA;
 	display: block;
 	font-size: 15px;
 	font-weight: bold;
@@ -32,7 +36,7 @@ button {
 
 button:hover,
 button:focus {
-	background-color: grey;
+	background-color: #5187BA;
 	color: white;
 }
 
@@ -59,4 +63,40 @@ button:focus {
 
 .target {
 	color: red;
+}
+
+.post-test-templ form {
+	padding: 30px 0;
+	max-width: 550px;
+	margin: 0 auto;
+}
+
+.post-test-templ p {
+	display: flex;
+	flex-direction: column;
+	margin: 25px 0;
+	text-align: left;
+}
+
+.post-test-templ form input, 
+.post-test-templ form select {
+	width: 200px;
+	max-width: 200px;
+}
+
+.post-test-templ form label {
+	margin: 0 10px 0 0;
+}
+
+.post-test-templ form label span {
+	font-size: 0.8em;
+}
+
+.post-test-templ form textarea {
+	border-radius: 5px;
+	border: 1px solid #777;
+	font-family: "Lato", serif;
+	font-size: 1em;
+	padding: 10px 15px;
+	margin: 5px 0 0 0;
 }

@@ -4,10 +4,9 @@ var initIntroView = function() {
 	view.name = 'intro';
 	view.template = $('#intro-view').html();
 	$('main').html(Mustache.render(view.template, {
-		title: config.intro.title,
-		logo: config.intro.logo,
-		text: config.intro.text,
-		button: config.intro.button
+		title: config_views.intro.title,
+		text: config_views.intro.text,
+		button: config_views.intro.buttonText
 	}));
 
 	$('#next').on('click', function() {
@@ -23,9 +22,9 @@ var initInstructionsView = function() {
 	view.name = 'instructions';
 	view.template = $("#instructions-view").html();
 	$('main').html(Mustache.render(view.template, {
-		title: config.instructions.title,
-		text: config.instructions.text,
-		button: config.instructions.button
+		title: config_views.instructions.title,
+		text: config_views.instructions.text,
+		button: config_views.instructions.buttonText
 	}));
 
 	$('#next').on('click', function() {
@@ -436,16 +435,32 @@ var initPauseView = function(index, trials) {
 	var view = {};
 	view.name = 'pause';
 	view.template = $("#pause-view").html();
+	$('main').html(Mustache.render(view.template));
+
+	$('#next').on('click', function() {
+		cp.findNextView();
+	});
+
+	return view;
+};
+
+// creates Pause View
+var initBlockInstructionsView = function(index, trials) {
+	var view = {};
+	view.name = 'pause';
+	view.template = $("#block-instructions-view").html();
 	var text;
 
-	if (cp.pause === 'reaction') {
-		text = 'instructions for the Go / No-Go task';
-		console.log(text);
-		cp.pause = 'goNoGo'
-	} else if (cp.pause === 'goNoGo') {
-		text = 'Instructions for the discrimination task';
-		console.log(text);
-		cp.pause = 'discrimination';
+	if (cp.blockInstructions === 'reaction') {
+		text = "You will see a blank screen for a while. At some point a shape will appear on the screen. Your task is to press the <strong>SPACE</strong> bar on your keyboard as soon as the shape appears.";
+		cp.blockInstructions = 'goNoGo'
+	} else if (cp.blockInstructions === 'goNoGo') {
+		text = "In this task, again, you will see a blank screen and a shape will appear. Your task is to press the <strong>SPACE</strong> bar only when you see <strong>" + cp.data.space_target + "</strong> and <strong>wait</strong> for the shape to disappear if it is not a <strong>" + cp.data.space_target + "</strong>."
+		cp.blockInstructions = 'discrimination';
+	} else if (cp.blockInstructions === 'discrimination') {
+		text = "You will see a shape appearing on the screen. Press the key <strong>F</strong> on the keyboard when you see <strong>" + cp.data.f_target + "</strong> and the key <strong>J</strong> when you see <strong>" + cp.data.j_target + "</strong>.";
+	} else {
+		console.log('something wrong with block instructions');
 	}
 
 	console.log(trials[index]['block']);
