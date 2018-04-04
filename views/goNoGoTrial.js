@@ -1,39 +1,33 @@
 // generates the go / no-go task 
 // takes trialInfo (one trial) as an argument and trialType which can be
-// either 'practice' (does not record the response) of 'trial' (records the response in cp.data.out).
+// either 'practice' (does not record the response) of 'trial' (records the response in exp.data.out).
 var goNoGoTask = function(trialInfo, trialType) {
 	// variables
 	var target = trialInfo['target'];
 	var stimulus = trialInfo['stimulus'];
 	// pause: assigns a random number between 1200 ms and 2700 ms
 	var pause = Math.floor(Math.random()*(2700-1200+1)+1200);
-	var dateStart, dateEnd, rt;
-
-	// the data that will be appended to data.out
-	// after recordData() adds more information to it
-	var trial_data = {
-		'trial_number': trialInfo['trial_number'],
-		'block': trialInfo['block'],
-		'stimulus': trialInfo['stimulus'],
-		'target': trialInfo['target']
-	}
+	var dateStart, rt;
 
 	// records the data and moves to the next view
 	var recordData = function(correctness, event) {
-		// sateEnd: records the time space was pressed
-		dateEnd = Date.now();
 		// rt: reaction time (starts when the stimulus appeared until the space is pressed)
-		rt = dateEnd - dateStart;
-		// adds a 'rt' key to trial_data
-		trial_data['reaction_time'] = rt;
-		// records response to trial_data
-		trial_data['response'] = correctness;
-		// event
-		trial_data['event'] = event;
+		rt = Date.now() - dateStart;
+
+		var trialData = {
+			trial_number: trialInfo['trial_number'],
+			block: trialInfo['block'],
+			stimulus: trialInfo['stimulus'],
+			target: trialInfo['target'],
+			reaction_time: rt,
+			response: correctness,
+			event: event
+		};
+
 		// pushes trial data to data.out list
-		cp.data.out.push(trial_data);
+		exp.data.out.push(trialData);
 		// moves to the next view
-		cp.findNextView();
+		exp.findNextView();
 	};
 
 	var startCycle = function(onSpace, onWait) {
@@ -75,13 +69,13 @@ var goNoGoTask = function(trialInfo, trialType) {
 		startCycle(function() {
 			if (target === stimulus) {
 				if (trialType === 'practice') {
-					cp.findNextView();	
+					exp.findNextView();	
 				} else if (trialType === 'trial') {
 					recordData('correct', 'space');
 				}
 			} else {
 				if (trialType === 'practice') {
-					cp.findNextView();	
+					exp.findNextView();	
 				} else if (trialType === 'trial') {
 					recordData('incorrect', 'space');
 				}
@@ -89,13 +83,13 @@ var goNoGoTask = function(trialInfo, trialType) {
 		}, function() {
 			if (target === stimulus) {
 				if (trialType === 'practice') {
-					cp.findNextView();	
+					exp.findNextView();	
 				} else if (trialType === 'trial') {
 					recordData('incorrect', 'waited');
 				}
 			} else {
 				if (trialType === 'practice') {
-					cp.findNextView();	
+					exp.findNextView();	
 				} else if (trialType === 'trial') {
 					recordData('correct', 'waited');
 				}
@@ -106,12 +100,12 @@ var goNoGoTask = function(trialInfo, trialType) {
 };
 
 // creates go / no-go trial, calls goNoGoTask() and records the response
-var initGoNoGoView = function(index, trials) {
+var initGoNoGoView = function(index) {
 	var view = {};
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = trials[(trials.length / 3) + index];
+	var trialInfo = exp.data.trials[(exp.data.trials.length / 3) + index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
@@ -129,7 +123,7 @@ var initGoNoGoPracticeView = function(index, trials) {
 	view.name = 'practice';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = cp.data.practice_trials[(cp.data.practice_trials.length / 3) + index];
+	var trialInfo = exp.data.practice_trials[(exp.data.practice_trials.length / 3) + index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {

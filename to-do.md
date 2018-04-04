@@ -8,7 +8,12 @@
 
 1. Splitting the `config.js` into two separate files - one for the texts settings and the other for the exp settings, **naming** the files **done**
 
-2. Separate view files
+2. Separate view files **done**
+
+
+# Submission
+
+1. 4 ways for submitting
 
 
 # Experiment issues

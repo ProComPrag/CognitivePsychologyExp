@@ -10,7 +10,7 @@ var initInstructionsView = function() {
 	}));
 
 	$('#next').on('click', function() {
-		cp.findNextView();
+		exp.findNextView();
 	});
 
 	return view;

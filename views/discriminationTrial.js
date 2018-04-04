@@ -4,34 +4,27 @@ var discriminationTask = function(trialInfo, trialType) {
 	var stimulus = trialInfo['stimulus'];
 	// pause: assigns a random number between 1200 ms and 2700 ms
 	var pause = Math.floor(Math.random()*(2700-1200+1)+1200);
-	var dateStart, dateEnd, rt;
-
-	// the data that will be appended to data.out
-	// after recordData() adds more information to it
-	var trial_data = {
-		'trial_number': trialInfo['trial_number'],
-		'block': trialInfo['block'],
-		'stimulus': trialInfo['stimulus'],
-		'f_target': trialInfo['f'],
-		'j_target': trialInfo['j']
-	}
+	var dateStart, rt;
 
 	// records the data and moves to the next view
 	var recordData = function(correctness, key) {
-		// sateEnd: records the time space was pressed
-		dateEnd = Date.now();
 		// rt: reaction time (starts when the stimulus appeared until the space is pressed)
-		rt = dateEnd - dateStart;
-		// adds a 'rt' key to trial_data
-		trial_data['reaction_time'] = rt;
-		// records response to trial_data
-		trial_data['response'] = correctness;
-		// key pressed
-		trial_data['pressed'] = key;
-		// pushes trial data to data.out list
-		cp.data.out.push(trial_data);
+		rt = Date.now() - dateStart;
+
+		var trialData = {
+			trial_number: trialInfo['trial_number'],
+			block: trialInfo['block'],
+			stimulus: trialInfo['stimulus'],
+			f_target: trialInfo['f'],
+			j_target: trialInfo['j'],
+			reaction_time: rt,
+			response: correctness,
+			pressed: key
+		};
+
+		exp.data.out.push(trialData);
 		// moves to the next view
-		cp.findNextView();
+		exp.findNextView();
 	};
 
 	// if the stimulus in this trial is a circle, turns the sqaure to a circle
@@ -59,7 +52,7 @@ var discriminationTask = function(trialInfo, trialType) {
 			rt = dateEnd - dateStart;
 
 			if (trialType === 'practice') {
-				cp.findNextView();
+				exp.findNextView();
 			} else if (trialType === 'trial') {
 				recordData('correct', 'f');
 			}
@@ -72,7 +65,7 @@ var discriminationTask = function(trialInfo, trialType) {
 			rt = dateEnd - dateStart;
 
 			if (trialType === 'practice') {
-				cp.findNextView();
+				exp.findNextView();
 			} else if (trialType === 'trial') {
 				recordData('incorrect', 'f');
 			}
@@ -84,7 +77,7 @@ var discriminationTask = function(trialInfo, trialType) {
 			rt = dateEnd - dateStart;
 
 			if (trialType === 'practice') {
-				cp.findNextView();
+				exp.findNextView();
 			} else if (trialType === 'trial') {
 				recordData('correct', 'j');
 			}
@@ -97,7 +90,7 @@ var discriminationTask = function(trialInfo, trialType) {
 			rt = dateEnd - dateStart;
 
 			if (trialType === 'practice') {
-				cp.findNextView();
+				exp.findNextView();
 			} else if (trialType === 'trial') {
 				recordData('incorrect', 'j');
 			}
@@ -107,12 +100,12 @@ var discriminationTask = function(trialInfo, trialType) {
 	};
 };
 
-var initDiscriminationView = function(index, trials) {
+var initDiscriminationView = function(index) {
 	var view = {};
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = trials[2*(trials.length / 3) + index];
+	var trialInfo = exp.data.trials[2*(exp.data.trials.length / 3) + index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
@@ -129,7 +122,7 @@ var initDiscriminationPracticeView = function(index) {
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = cp.data.practice_trials[2*(cp.data.practice_trials.length / 3) + index];
+	var trialInfo = exp.data.practice_trials[2*(exp.data.practice_trials.length / 3) + index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {

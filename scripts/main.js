@@ -1,7 +1,7 @@
 // when the DOM is created and JavaScript code can run safely,
 // the experiment initialisation is called
 $('document').ready(function() {
-	cp.init();
+	exp.init();
 
 	// prevents scrolling when space is pressed (firefox does it)
 	window.onkeydown = function(e) {
@@ -12,27 +12,27 @@ $('document').ready(function() {
 });
 
 // an object cp (from cognitive psychology)
-var cp = {};
+var exp = {};
 
 // navigation through the views and steps in each view;
 // shows each view (in the order defined in 'config_general') for
 // the given number of steps (as defined in 'config_general')
-cp.findNextView = function() {
+exp.findNextView = function() {
 	// shows the same view template
 	if (this.currentViewStepCounter < config_general.viewSteps[this.currentViewCounter]) {
-		this.view = window[config_general.viewFunctions[this.currentViewCounter]](this.currentViewStepCounter, this.data.trials);
+		this.view = window[config_general.viewFunctions[this.currentViewCounter]](this.currentViewStepCounter);
 		this.currentViewStepCounter ++;
 	// shows the next view template 
 	} else {
 		this.currentViewCounter ++; 
 		this.currentViewStepCounter = 0;
-		this.view = window[config_general.viewFunctions[this.currentViewCounter]](this.currentViewStepCounter, this.data.trials);
+		this.view = window[config_general.viewFunctions[this.currentViewCounter]](this.currentViewStepCounter);
 		this.currentViewStepCounter ++;
 	}
 };
 
 // creates and sets variables when the page is loaded.
-cp.init = function() {
+exp.init = function() {
 	this.data = prepareData();
 	
 	// initialize counters and generate first view

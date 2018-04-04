@@ -1,13 +1,13 @@
 // generates the reaction time task 
 // takes trialInfo (one trial) as an argument and trialType which can be
-// either 'practice' (does not record the response) of 'trial' (records the response in cp.data.out).
+// either 'practice' (does not record the response) of 'trial' (records the response in exp.data.out).
 var reactionTimeTask = function(trialInfo, trialType) {
 	// variables
 	// stimulus: the stimulus html element
 	var stimulus = $('#stimulus');
 	// pause: assigns a random number between 1200 ms and 2700 ms
 	var pause = Math.floor(Math.random()*(2700-1200+1)+1200);
-	var dateStart, dateEnd, rt;
+	var dateStart, rt;
 
 	// if the stimulus in this trial is a circle, turns the sqaure to a circle
 	// by addid css border radius to the sqaure
@@ -15,26 +15,22 @@ var reactionTimeTask = function(trialInfo, trialType) {
 		stimulus.css('border-radius', '50%');
 	}
 
-	// the data that will be appended to data.out
-	// after recordData() adds more information to it
-	var trial_data = {
-		'trial_number': trialInfo['trial_number'],
-		'block': trialInfo['block'],
-		'stimulus': trialInfo['stimulus']
-	};
-
 	// records the data and moves to the next view
 	var recordData = function() {
-		// sateEnd: records the time space was pressed
-		dateEnd = Date.now();
 		// rt: reaction time (starts when the stimulus appeared until the space is pressed)
-		rt = dateEnd - dateStart;
-		// adds a 'rt' key to trial_data
-		trial_data['reaction_time'] = rt;
+		rt = Date.now() - dateStart;
+
+		var trialData = {
+			trial_number: trialInfo['trial_number'],
+			block: trialInfo['block'],
+			stimulus: trialInfo['stimulus'],
+			reaction_time: rt
+		};
+
 		// pushes trial data to data.out list
-		cp.data.out.push(trial_data);
+		exp.data.out.push(trialData);
 		// moves to the next view
-		cp.findNextView();
+		exp.findNextView();
 	};
 
 	// checks whether the key pressed is SPACE
@@ -45,7 +41,7 @@ var reactionTimeTask = function(trialInfo, trialType) {
 			$('body').off('keyup', handleKeyUp);
 			// if the slide is practice, moves to the next view
 			if (trialType === 'practice') {
-				cp.findNextView();
+				exp.findNextView();
 			// if the slide is trial, records the response and moves to the next view
 			} else if (trialType === 'trial') {
 				recordData();
@@ -66,9 +62,9 @@ var reactionTimeTask = function(trialInfo, trialType) {
 };
 
 // creates the reaction time practice view, calls reactionTimeTask, does not record the response
-var initReactionTimePracticeView = function(index, trials) {
+var initReactionTimePracticeView = function(index) {
 	var view = {};
-	var trialInfo = cp.data.practice_trials[index];
+	var trialInfo = exp.data.practice_trials[index];
 	view.name = 'practice';
 	view.template = $("#trial-view").html();
 	// renderts the template
@@ -86,9 +82,9 @@ var initReactionTimePracticeView = function(index, trials) {
 
 
 // creates the reaction time actual task, calls reaction time task, records the response
-var initReactionTimeView = function(index, trials) {
+var initReactionTimeView = function(index) {
 	var view = {};
-	var trialInfo = trials[index];
+	var trialInfo = exp.data.trials[index];
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 	// renderts the template
