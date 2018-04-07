@@ -29,3 +29,9 @@
 2. template elems
 3. remove console.logs 
 4. data recordings
+
+
+# to add
+
+1. exp starting date
+2. browser/OS info
