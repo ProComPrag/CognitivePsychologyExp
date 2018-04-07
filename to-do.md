@@ -22,16 +22,16 @@
 2. Instructions before each block **done**
 3. Think of a cleaner way to record trial number **done**
 
-
 # Double-checks
 
 1. Text for typos
 2. template elems
 3. remove console.logs 
 4. data recordings
-
+5. starting dates (+/- the pause)
 
 # to add
 
 1. exp starting date
 2. browser/OS info
+3. README

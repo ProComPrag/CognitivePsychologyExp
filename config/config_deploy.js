@@ -2,10 +2,10 @@
 var config_deploy = {
 	
 	// obligatory fields
-	"author": "Random Jane",  // needed to recover data from server app
-	"experiment_id": "MentalChronometry", // needed to recover data from server app
+	"author": "Stela",  // needed to recover data from server app
+	"experiment_id": "MentalChronometry-test-01", // needed to recover data from server app
 	"description": "A classic sognitive psychology experiment",
-	"deployMethod" : "debug", // set deployment method; use one of 'debug', 'localServer', 'MTurk', 'MTurkSandbox', 'Prolific',
+	"deployMethod" : "MTurkSandbox", // set deployment method; use one of 'debug', 'localServer', 'MTurk', 'MTurkSandbox', 'Prolific',
 	
 	// optional fields
 	"contact_email": "someRandomJanesEmail@randomJoesAndJanes.love", // who to contact in case of trouble
