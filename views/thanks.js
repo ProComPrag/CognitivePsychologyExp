@@ -38,6 +38,8 @@ var initThanksView = function() {
         data['assignmentId'] = HITData['assignmentId'];
         data['workerId'] = HITData['workerId'];
         data['HITId'] = HITData['HITId'];
+    } else if (config_deploy.is_Prolific) {
+        data['prolific_id'] = exp.data.out.prolific_id;
     } else {
     	$('main').html(Mustache.render(view.template, {
     		thanksMessage: config_views.thanks.message

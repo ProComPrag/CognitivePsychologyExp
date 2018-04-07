@@ -34,6 +34,7 @@ exp.findNextView = function() {
 
 // creates and sets variables when the page is loaded.
 exp.init = function() {
+	console.log('exp created');
 	this.data = prepareData();
 	
 	// initialize counters and generate first view
