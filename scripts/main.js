@@ -18,6 +18,7 @@ var exp = {};
 // shows each view (in the order defined in 'config_general') for
 // the given number of steps (as defined in 'config_general')
 exp.findNextView = function() {
+	console.log('findNextView() called');
 	// shows the same view template
 	if (this.currentViewStepCounter < config_general.viewSteps[this.currentViewCounter]) {
 		this.view = window[config_general.viewFunctions[this.currentViewCounter]](this.currentViewStepCounter);

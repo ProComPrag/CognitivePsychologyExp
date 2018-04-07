@@ -8,7 +8,8 @@ var initPostTestView = function() {
 		text: config_views.postTest.text
 	}));
 
-	$('#next').on('click', function() {
+	$('#next').on('click', function(e) {
+		e.preventDefault();
 		exp.findNextView();
 	});
 

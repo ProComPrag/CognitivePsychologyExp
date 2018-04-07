@@ -51,6 +51,7 @@ var prepareData = function() {
 		]
 	];
 
+	// have to be the same number for each task
 	var practice_trials = [
 		{'block': 'reaction', 'stimulus': 'circle'},
 		{'block': 'reaction', 'stimulus': 'square'},
@@ -79,9 +80,12 @@ var prepareData = function() {
 	}
 
 	var data = {
+		// info used in the texts of the slides
 		'space_target': space_target,
 		'f_target': f_target,
 		'j_target': j_target,
+
+		// lists used for passing and collecting the data
 		'trials': trials,
 		'practice_trials': practice_trials,
 		'out': []

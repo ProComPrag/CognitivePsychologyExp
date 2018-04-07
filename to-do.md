@@ -21,3 +21,11 @@
 1. Part 1: what if they press <SPACE> the whole time?
 2. Instructions before each block **done**
 3. Think of a cleaner way to record trial number **done**
+
+
+# Double-checks
+
+1. Text for typos
+2. template elems
+3. remove console.logs 
+4. data recordings

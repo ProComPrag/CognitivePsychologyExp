@@ -17,7 +17,8 @@
 		<!-- local js files -->
 		<script src="scripts/exp.js"></script>
 		<script src="scripts/main.js"></script>
-
+<!-- 		<script src="scripts/submit_to_server.js"></script>
+ -->
 		<!-- views -->
 		<script src="views/intro.js"></script>
 		<script src="views/instructions.js"></script>
@@ -31,9 +32,9 @@
 		<script src="views/thanks.js"></script>
 
 		<!-- config -->
-		<script src="config.js"></script>
 		<script src="config/config_general.js"></script>
 		<script src="config/config_views.js"></script>
+		<script src="config/config_deploy.js"></script>
 
 	</head>
 	<body>
@@ -193,13 +194,21 @@
 
 	<!-- Thanks View -->
 	<script id="thanks-view" type="x-tmpl-mustache">
-	<div class="view">
-		{{# message }}
-		<h1>{{ message }}</h1>
-		{{/ message }}
-		{{^ message }}
-		<h1>Thank you for taking part in this experiment!</h1>
-		{{/ message }}
+	<div class="view thanks-templ">
+		{{# thanksMessage }}
+		<h2>{{ thanksMessage }}</h2>
+		{{/ thanksMessage }}
+		{{^ thanksMessage }}
+		<h2>Thank you for taking part in this experiment!</h2>
+		{{/ thanksMessage }}
+		<form method="post" id="mturk-submission-form" action="{{ mturk_server }}">
+			<input type="hidden" name="assignmentId" value="{{ assignmentId }}" />
+			<input type="hidden" name="author" value="{{ author }}"/>
+			<input type="hidden" name="experiment_id" value="{{ experimentId }}"/>
+			<input type="hidden" name="trials" value="{{ trials }}"/>
+			<input type="hidden" name="description" value="{{ description }}"/>
+			<input type="hidden" name="worker_id" value="{{ workerId }}"/>
+		</form>
 	</div>
 	</script>
 </html>
