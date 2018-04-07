@@ -32,6 +32,7 @@
 
 # to add
 
-1. exp starting date
-2. browser/OS info
-3. README
+1. instructions to wait until submission is successful **done**
+2. exp starting date
+3. browser/OS info
+4. README

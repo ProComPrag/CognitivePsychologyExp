@@ -104,3 +104,9 @@ button:focus {
 .thanks-templ .debug-results {
 	text-align: left;
 }
+
+.thanks-templ strong {
+	border: 2px solid green;
+	color: green;
+	padding: 10px;
+}
