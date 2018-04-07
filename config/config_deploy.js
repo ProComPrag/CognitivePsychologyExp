@@ -5,7 +5,7 @@ var config_deploy = {
 	"author": "Stela",  // needed to recover data from server app
 	"experiment_id": "MentalChronometry-test-01", // needed to recover data from server app
 	"description": "A classic cognitive psychology experiment",
-	"deployMethod" : "Prolific", // set deployment method; use one of 'debug', 'localServer', 'MTurk', 'MTurkSandbox', 'Prolific',
+	"deployMethod" : "debug", // set deployment method; use one of 'debug', 'localServer', 'MTurk', 'MTurkSandbox', 'Prolific',
 	
 	// optional fields
 	"contact_email": "someRandomJanesEmail@randomJoesAndJanes.love", // who to contact in case of trouble
