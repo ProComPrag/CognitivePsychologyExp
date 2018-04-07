@@ -9,7 +9,12 @@ var initThanksView = function() {
         'author': config_deploy.author,
         'experiment_id': config_deploy.experiment_id,
         'trials': exp.data.out,
-        'description': config_deploy.description
+        'description': config_deploy.description,
+        'age': exp.data.out.age,
+        'gender': exp.data.out.gender,
+        'education': exp.data.out.education,
+        'languages': exp.data.out.languages,
+        'comments': exp.data.out.comments
     };
 
     // needed for the submission to MTurk's server

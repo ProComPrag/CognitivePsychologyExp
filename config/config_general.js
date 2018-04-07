@@ -1,7 +1,8 @@
 var config_general = {
 
 	// obligatory settings for any experiment
-	'viewFunctions': [
+	'viewFunctions': ['initPostTestView',
+			'initThanksView',
 			'initIntroView',
 			'initInstructionsView',
 			'initBlockInstructionsView',
