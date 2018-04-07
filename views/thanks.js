@@ -24,7 +24,7 @@ var initThanksView = function() {
         // updates the fields in the hidden form with info for the MTurk's server
         $('main').html(Mustache.render(view.template, {
             thanksMessage: config_views.thanks.message,
-            waitMessage: "Please do not close this tab until you see <strong>&#10004; HIT submitted</strong> message on the screen.",
+            extraMessage: "Please do not close this tab until you see <strong>&#10004; HIT submitted</strong> message on the screen.",
             mturk_server: config_deploy.MTurk_server,
             assignmentId: HITData['assignmentId'],
             author: config_deploy.author,
@@ -39,6 +39,13 @@ var initThanksView = function() {
         data['workerId'] = HITData['workerId'];
         data['HITId'] = HITData['HITId'];
     } else if (config_deploy.is_Prolific) {
+        var prolificURL = 'https://prolific.ac/submissions/complete?cc=' + config_deploy.prolificCode;
+
+        $('main').html(Mustache.render(view.template, {
+            thanksMessage: config_views.thanks.message,
+            extraMessage: "Please press the button below<br />" + '<a href=' + prolificURL +  ' class="prolific-url">Finished!</a>'
+        }));
+
         data['prolific_id'] = exp.data.out.prolific_id;
     } else {
     	$('main').html(Mustache.render(view.template, {

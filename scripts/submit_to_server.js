@@ -23,7 +23,8 @@ var submitResults = function(contactEmail, data) {
                 submitToMTurk();
             }
             // shows a thanks message after the submission
-            $('.thanks-message').removeClass('hidden');
+            $('.thanks-message').removeClass('nodisplay');
+            $('.extra-message').removeClass('nodisplay');
         },
         error: function (responseData, textStatus, errorThrown) {
             // There is this consideration about whether we should still allow such a submission that failed on our side to proceed on submitting to MTurk. Maybe we should after all.
@@ -35,7 +36,7 @@ var submitResults = function(contactEmail, data) {
                 // submits to MTurk's server if isMTurk = true
                 submitToMTurk();
                 // shows a thanks message after the submission
-                $('.thanks-message').removeClass('hidden');
+                $('.thanks-message').removeClass('nodisplay');
             } else {
                 // It seems that this timeout (waiting for the server) is implemented as a default value in many browsers, e.g. Chrome. However it is really long (1 min) so timing out shouldn't be such a concern.
                 if (textStatus == "timeout") {

@@ -23,6 +23,7 @@ config_deploy.MTurk_server = config_deploy.deployMethod == "MTurkSandbox" ?
 // if the config_deploy.deployMethod is not debug, then liveExperiment is true
 config_deploy.liveExperiment = config_deploy.deployMethod !== "debug";
 config_deploy.is_Prolific = config_deploy.deployMethod === "Prolific";
+config_deploy.prolificCode = '9BTAOPQD';
 config_deploy.is_MTurk = config_deploy.MTurk_server !== "";
 console.log("deployMethod: " + config_deploy.deployMethod);
 console.log("live experiment: " + config_deploy.liveExperiment);
