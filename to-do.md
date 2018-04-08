@@ -1,7 +1,7 @@
 # Deployment Info
 
-1. `node_modules` have to be deployed, too
-2. parse the query string for MTurk
+1. `node_modules` have to be deployed, too **done**
+2. parse the query string for MTurk **done**
 
 
 # Project organisation

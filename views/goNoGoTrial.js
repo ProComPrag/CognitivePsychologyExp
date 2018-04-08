@@ -21,7 +21,9 @@ var goNoGoTask = function(trialInfo, trialType) {
 			target: trialInfo['target'],
 			reaction_time: rt,
 			response: correctness,
-			event: event
+			event: event,
+			j_target: '-',
+			f_target: '-'
 		};
 
 		// pushes trial data to data.out list

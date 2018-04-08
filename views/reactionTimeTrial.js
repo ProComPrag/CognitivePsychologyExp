@@ -24,7 +24,12 @@ var reactionTimeTask = function(trialInfo, trialType) {
 			trial_number: trialInfo['trial_number'],
 			block: trialInfo['block'],
 			stimulus: trialInfo['stimulus'],
-			reaction_time: rt
+			reaction_time: rt,
+			target: '-',
+			response: '-',
+			event: '-',
+			f_target: '-',
+			j_target: '-'
 		};
 
 		// pushes trial data to data.out list

@@ -15,11 +15,12 @@ var discriminationTask = function(trialInfo, trialType) {
 			trial_number: trialInfo['trial_number'],
 			block: trialInfo['block'],
 			stimulus: trialInfo['stimulus'],
-			f_target: trialInfo['f'],
-			j_target: trialInfo['j'],
+			target: '-',
 			reaction_time: rt,
 			response: correctness,
-			pressed: key
+			event: key,
+			f_target: trialInfo['f'],
+			j_target: trialInfo['j']
 		};
 
 		exp.data.out.push(trialData);
