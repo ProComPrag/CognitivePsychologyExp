@@ -204,12 +204,14 @@
 	<!-- Thanks View -->
 	<script id="thanks-view" type="x-tmpl-mustache">
 	<div class="view thanks-templ">
+		<h4 class="warning-message">Please do not close this tab until you see a <strong>&#10004; Submission Successful</strong> message on the screen.</h4>
 		{{# thanksMessage }}
 		<h2 class="thanks-message nodisplay">{{ thanksMessage }}</h2>
 		{{/ thanksMessage }}
 		{{^ thanksMessage }}
 		<h2 class="thanks-message nodisplay">Thank you for taking part in this experiment!</h2>
 		{{/ thanksMessage }}
+		<h4 class="success-message nodisplay"><strong>&#10004; Submission Successful!</strong></h4>
 		{{# extraMessage }}
 		<h4 class="extra-message nodisplay">{{{ extraMessage }}}</h4>
 		{{/ extraMessage }}

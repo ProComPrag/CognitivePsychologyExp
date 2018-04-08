@@ -18,13 +18,15 @@ var submitResults = function(contactEmail, data) {
         success: function (responseData, textStatus, jqXHR) {
             console.log(textStatus);
 
-            if (config_deploy.is_MTurk) {
-                // submits to MTurk's server if isMTurk = true
-                submitToMTurk();
-            }
-            // shows a thanks message after the submission
+            $('.warning-message').addClass('nodisplay');
+            $('.success-message').removeClass('nodisplay');
             $('.thanks-message').removeClass('nodisplay');
             $('.extra-message').removeClass('nodisplay');
+
+            if (config_deploy.is_MTurk) {
+                // submits to MTurk's server if isMTurk = true
+                setTimeout(submitToMTurk, 500);
+            }
         },
         error: function (responseData, textStatus, errorThrown) {
             // There is this consideration about whether we should still allow such a submission that failed on our side to proceed on submitting to MTurk. Maybe we should after all.
@@ -35,6 +37,7 @@ var submitResults = function(contactEmail, data) {
 
                 // submits to MTurk's server if isMTurk = true
                 submitToMTurk();
+                
                 // shows a thanks message after the submission
                 $('.thanks-message').removeClass('nodisplay');
             } else {

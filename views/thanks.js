@@ -24,7 +24,6 @@ var initThanksView = function() {
         // updates the fields in the hidden form with info for the MTurk's server
         $('main').html(Mustache.render(view.template, {
             thanksMessage: config_views.thanks.message,
-            extraMessage: "Please do not close this tab until you see <strong>&#10004; HIT submitted</strong> message on the screen.",
             mturk_server: config_deploy.MTurk_server,
             assignmentId: HITData['assignmentId'],
             author: config_deploy.author,
@@ -61,6 +60,8 @@ var initThanksView = function() {
         console.log('submits');
         submitResults(config_deploy.contact_email, data);
     } else {
+        // hides the 'Please do not close the tab.. ' message in debug mode
+        $('.warning-message').addClass('nodisplay');
         console.log('debug mode');
         jQuery('<h3/>', {
             text: 'Debug Mode'
