@@ -36,6 +36,9 @@ exp.findNextView = function() {
 exp.init = function() {
 	console.log('exp created');
 	this.data = prepareData();
+	this.data.startDate = Date();
+	this.data.startTime = Date.now();
+	this.data.userAgent = window.navigator.userAgent;
 	
 	// initialize counters and generate first view
 	this.currentViewCounter = 0;
