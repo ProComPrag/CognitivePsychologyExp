@@ -10,12 +10,12 @@ var initIntroView = function() {
 		button: config_views.intro.buttonText
 	}));
 
-	if (config_deploy.deployMethod === 'Prolific' || config_deploy.deployMethod === 'directLink') {
+	if (config_deploy.deployMethod === 'Prolific') {
 		$('.id-field').removeClass('nodisplay');
 	} 
 
 	$('#next').on('click', function() {
-		if (config_deploy.deployMethod === 'Prolific' || config_deploy.deployMethod === 'directLink') {
+		if (config_deploy.deployMethod === 'Prolific') {
 			if ($('#id-field').val().trim() === '') {
 				alert('Please enter your ID to begin the experiment');
 			} else {
