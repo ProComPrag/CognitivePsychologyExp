@@ -5,20 +5,26 @@ var initIntroView = function() {
 	view.template = $('#intro-view').html();
 	$('main').html(Mustache.render(view.template, {
 		title: config_views.intro.title,
+		IDtext: config_views.intro.IDtext,
 		text: config_views.intro.text,
 		button: config_views.intro.buttonText
 	}));
 
-	if (config_deploy.is_Prolific) {
-		$('.prolific-id').removeClass('nodisplay');
-	}
+	if (config_deploy.deployMethod === 'Prolific' || config_deploy.deployMethod === 'directLink') {
+		$('.id-field').removeClass('nodisplay');
+	} 
 
 	$('#next').on('click', function() {
-		if (config_deploy.is_Prolific) {
-			$('.prolific-id').removeClass('nodisplay');
-			exp.data.out.prolific_id = $('#prolific-id').val().trim();
+		if (config_deploy.deployMethod === 'Prolific' || config_deploy.deployMethod === 'directLink') {
+			if ($('#id-field').val().trim() === '') {
+				alert('Please enter your ID to begin the experiment');
+			} else {
+				exp.data.out.participant_id = $('#id-field').val().trim();
+				exp.findNextView();
+			}
+		} else {
+			exp.findNextView();			
 		}
-		exp.findNextView();
 	});
 
 	return view;

@@ -61,9 +61,14 @@
 			<p class="text">{{ text }}</p>
 		</section>
 		{{/ text }}
-		<p class="prolific-id nodisplay">
-			<label for="prolific-id">Please enter your Prolific ID in the box</label>
-			<input type="text" id="prolific-id" />
+		<p class="id-field nodisplay">
+			{{# IDtext }}
+			<label for="id-field">{{ IDtext }}</label>
+			{{/ IDtext }}
+			{{^ IDtext }}
+			<label for="id-field">Please enter your ID</label>
+			{{/ IDtext }}
+			<input type="text" id="id-field" />
 		</p>
 		{{# button }}
 		<button id="next">{{ button }}</button>

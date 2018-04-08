@@ -5,6 +5,8 @@ var config_views = {
 		"title": "Welcome!",
 		// introduction text
 		"text": "Thank you for participating in our study. In this study, you will ..",
+		// text that asks for ID (used when the config_deploy.deployMethod is Prolific, directLink)
+		"IDtext": "Please enter your Prolific ID:",
 		// instroduction's slide proceeding button
 		"buttonText": "Begin experiment"
 	},
