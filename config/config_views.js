@@ -21,6 +21,19 @@ var config_views = {
 		"buttonText": "Next"
 	},
 
+	"reactionTimeTrial": {
+		"text": "Press SPACE when you see a shape on the screen."
+	},
+
+	"goNoGoTrial": {
+		"text": "Press SPACE when you see a " // + space_target (discriminationTrial lines 114 and 133)
+	},
+
+	"discriminationTrial": {
+		"text_f": "Press F when you see a ", // + f_target (discriminationTrial lines 114 and 131)
+		"text_j": "J when you see a " // // + j_target (see discriminationTrial lines 114 and 131)
+	},
+
 	// begin experiment view
 	"beginExp": {
 		"text": "Now that you have acquainted yourself with the procedure of the task, the actual experiment will begin."

@@ -17,8 +17,6 @@ var initBlockInstructionsView = function(index) {
 		console.log('something wrong with block instructions');
 	}
 
-	console.log(exp.data.trials[index]['block']);
-
 	$('main').html(Mustache.render(view.template, {
 		text: text
 	}));

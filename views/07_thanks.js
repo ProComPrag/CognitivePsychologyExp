@@ -58,6 +58,10 @@ var initThanksView = function() {
     	}));
 
         data['participant_id'] = exp.data.out.participant_id;
+    } else if (config_deploy.deployMethod === 'debug') {
+        $('main').html(Mustache.render(view.template, {}));
+    } else {
+        console.log('no such config_deploy.deployMethod');
     }
 
     // if the experiment is set to live (see config.js liveExperiment)
@@ -75,9 +79,9 @@ var initThanksView = function() {
             text: 'Debug Mode'
         }).appendTo($('.view'));
         jQuery('<p/>', {
-        	class: 'debug-results',
+            class: 'debug-results',
             text: JSON.stringify(data)
-        }).insertAfter($('h3'));
+        }).appendTo($('.view'));
     }
 
     return view;

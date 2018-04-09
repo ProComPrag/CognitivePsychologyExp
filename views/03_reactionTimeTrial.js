@@ -75,7 +75,7 @@ var initReactionTimePracticeView = function(index) {
 	// renderts the template
 	$('main').html(Mustache.render(view.template, {
 		title: 'Practice',
-		text: 'Press SPACE when you see a shape on the screen'
+		text: config_views.reactionTimeTrial.text
 	}));
 
 	console.log(trialInfo);
@@ -94,7 +94,7 @@ var initReactionTimeView = function(index) {
 	view.template = $("#trial-view").html();
 	// renderts the template
 	$('main').html(Mustache.render(view.template, {
-		text: 'Press SPACE when you see a shape on the screen'
+		text: config_views.reactionTimeTrial.text
 	}));
 
 	console.log(trialInfo);

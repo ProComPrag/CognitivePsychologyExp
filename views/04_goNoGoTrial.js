@@ -111,7 +111,7 @@ var initGoNoGoView = function(index) {
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
-		text: 'Press SPACE when you see a ' + trialInfo['target']
+		text: config_views.goNoGoTrial.text + exp.data.space_target + "."
 	}));
 
 	goNoGoTask(trialInfo, 'trial');
@@ -130,7 +130,7 @@ var initGoNoGoPracticeView = function(index) {
 
 	$('main').html(Mustache.render(view.template, {
 		title: 'Practice',
-		text: 'Press SPACE when you see a ' + trialInfo['target']
+		text: config_views.goNoGoTrial.text + exp.data.space_target + "."
 	}));
 
 	goNoGoTask(trialInfo, 'practice');
