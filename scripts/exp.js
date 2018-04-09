@@ -36,8 +36,6 @@ var prepareData = function() {
 		[
 			{'block': 'goNoGo', 'stimulus': 'circle', 'target': space_target},
 			{'block': 'goNoGo', 'stimulus': 'circle', 'target': space_target},
-			{'block': 'goNoGo', 'stimulus': 'circle', 'target': space_target},
-			{'block': 'goNoGo', 'stimulus': 'square', 'target': space_target},
 			{'block': 'goNoGo', 'stimulus': 'square', 'target': space_target},
 			{'block': 'goNoGo', 'stimulus': 'square', 'target': space_target}
 		],
@@ -46,37 +44,53 @@ var prepareData = function() {
 			{'block': 'discrimination', 'stimulus': 'circle', 'f': f_target, 'j': j_target},
 			{'block': 'discrimination', 'stimulus': 'circle', 'f': f_target, 'j': j_target},
 			{'block': 'discrimination', 'stimulus': 'square', 'f': f_target, 'j': j_target},
-			{'block': 'discrimination', 'stimulus': 'square', 'f': f_target, 'j': j_target},
 			{'block': 'discrimination', 'stimulus': 'square', 'f': f_target, 'j': j_target}
 		]
 	];
 
 	// have to be the same number for each task
 	var practice_trials = [
-		{'block': 'reaction', 'stimulus': 'circle'},
-		{'block': 'reaction', 'stimulus': 'square'},
-		{'block': 'goNoGo', 'stimulus': 'square', 'target': space_target},
-		{'block': 'goNoGo', 'stimulus': 'circle', 'target': space_target},
-		{'block': 'discrimination', 'stimulus': 'circle', 'f': f_target, 'j': j_target},
-		{'block': 'discrimination', 'stimulus': 'square', 'f': f_target, 'j': j_target}
+		[
+			{'block': 'reaction', 'stimulus': 'circle'},
+			{'block': 'reaction', 'stimulus': 'square'},
+			{'block': 'reaction', 'stimulus': 'square'}
+		],
+		[
+			{'block': 'goNoGo', 'stimulus': 'square', 'target': space_target},
+			{'block': 'goNoGo', 'stimulus': 'circle', 'target': space_target}
+		],
+		[
+			{'block': 'discrimination', 'stimulus': 'circle', 'f': f_target, 'j': j_target},
+			{'block': 'discrimination', 'stimulus': 'circle', 'f': f_target, 'j': j_target},
+			{'block': 'discrimination', 'stimulus': 'square', 'f': f_target, 'j': j_target},
+			{'block': 'discrimination', 'stimulus': 'square', 'f': f_target, 'j': j_target}
+		]
 	];
 
 	// shuffles the items in each block and adds the items to a list holding all the trials
 	// the items in trials are the following block order: reaction time task, go/noGo and discriminatio
 	for (var i = 0; i < trials_raw.length; i++) {
+		// for each block adds a new list to trials that will be filled with the shuffled trials
+		trials.push([]);
 		// shuffles the items in each list in 'trials_raw'
 		var temp = shuffleComb(trials_raw[i]);
 
 		// takes each item from each list in 'trials_raw'
 		// and adds it to a list 'trials'
 		for (var j = 0; j<temp.length; j++) {
-			trials.push(temp[j]);
-		}
-	}
+			trials[i].push(temp[j]);
 
-	// adds trial number to each object in 'trials'
-	for (var i = 0; i<trials.length; i++) {
-		trials[i]['trial_number'] = i + 1;
+			if (i === 0) {
+				trials[i][j]['trial_number'] = j+1;
+			} else if (i === 1) {
+				trials[i][j]['trial_number'] = trials[i-1].length + j+1;
+			} else if (i === 2) {
+				trials[i][j]['trial_number'] = trials[i-2].length + trials[i-1].length + j+1;			
+			} else {
+				console.log('there are more than 3 blocks in trials_raw');
+			}
+
+		}
 	}
 
 	var data = {

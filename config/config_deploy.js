@@ -3,7 +3,7 @@ var config_deploy = {
 	
 	// obligatory fields
 	"author": "Stela",  // needed to recover data from server app
-	"experiment_id": "MentalChronometry-test-02-MTurk", // needed to recover data from server app
+	"experiment_id": "MentalChronometry-test-02-directLink", // needed to recover data from server app
 	"description": "A classic cognitive psychology experiment",
 	"deployMethod" : "directLink", // set deployment method; use one of 'debug', 'localServer', 'MTurk', 'MTurkSandbox', 'Prolific', 'directLink'
 	

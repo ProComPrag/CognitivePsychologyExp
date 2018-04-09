@@ -25,11 +25,11 @@ var reactionTimeTask = function(trialInfo, trialType) {
 			block: trialInfo['block'],
 			stimulus: trialInfo['stimulus'],
 			reaction_time: rt,
-			target: '-',
-			response: '-',
-			event: '-',
-			f_target: '-',
-			j_target: '-'
+			target: 'NA',
+			response: 'NA',
+			event: 'NA',
+			f_target: 'NA',
+			j_target: 'NA'
 		};
 
 		// pushes trial data to data.out list
@@ -69,7 +69,7 @@ var reactionTimeTask = function(trialInfo, trialType) {
 // creates the reaction time practice view, calls reactionTimeTask, does not record the response
 var initReactionTimePracticeView = function(index) {
 	var view = {};
-	var trialInfo = exp.data.practice_trials[index];
+	var trialInfo = exp.data.practice_trials[0][index];
 	view.name = 'practice';
 	view.template = $("#trial-view").html();
 	// renderts the template
@@ -89,7 +89,7 @@ var initReactionTimePracticeView = function(index) {
 // creates the reaction time actual task, calls reaction time task, records the response
 var initReactionTimeView = function(index) {
 	var view = {};
-	var trialInfo = exp.data.trials[index];
+	var trialInfo = exp.data.trials[0][index];
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 	// renderts the template

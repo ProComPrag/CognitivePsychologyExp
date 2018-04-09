@@ -22,8 +22,8 @@ var goNoGoTask = function(trialInfo, trialType) {
 			reaction_time: rt,
 			response: correctness,
 			event: event,
-			j_target: '-',
-			f_target: '-'
+			j_target: 'NA',
+			f_target: 'NA'
 		};
 
 		// pushes trial data to data.out list
@@ -107,7 +107,7 @@ var initGoNoGoView = function(index) {
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = exp.data.trials[(exp.data.trials.length / 3) + index];
+	var trialInfo = exp.data.trials[1][index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
@@ -120,12 +120,12 @@ var initGoNoGoView = function(index) {
 };
 
 // creates go / no-go practice trial, calls goNoGoTask() and does not records the response
-var initGoNoGoPracticeView = function(index, trials) {
+var initGoNoGoPracticeView = function(index) {
 	var view = {};
 	view.name = 'practice';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = exp.data.practice_trials[(exp.data.practice_trials.length / 3) + index];
+	var trialInfo = exp.data.practice_trials[1][index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {

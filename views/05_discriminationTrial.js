@@ -15,7 +15,7 @@ var discriminationTask = function(trialInfo, trialType) {
 			trial_number: trialInfo['trial_number'],
 			block: trialInfo['block'],
 			stimulus: trialInfo['stimulus'],
-			target: '-',
+			target: 'NA',
 			reaction_time: rt,
 			response: correctness,
 			event: key,
@@ -106,7 +106,7 @@ var initDiscriminationView = function(index) {
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = exp.data.trials[2*(exp.data.trials.length / 3) + index];
+	var trialInfo = exp.data.trials[2][index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
@@ -123,7 +123,7 @@ var initDiscriminationPracticeView = function(index) {
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
 
-	var trialInfo = exp.data.practice_trials[2*(exp.data.practice_trials.length / 3) + index];
+	var trialInfo = exp.data.practice_trials[2][index];
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
