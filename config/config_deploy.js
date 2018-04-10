@@ -1,14 +1,14 @@
 // user enters information about deployment method here
 var config_deploy = {
-	
-	// obligatory fields
-	"author": "RandomJane",  // needed to recover data from server app
-	"experiment_id": "MentalChronometry", // needed to recover data from server app
-	"description": "A classic cognitive psychology experiment",
-	"deployMethod" : "directLink", // set deployment method; use one of 'debug', 'localServer', 'MTurk', 'MTurkSandbox', 'Prolific', 'directLink'
-	
-	// optional fields
-	"contact_email": "someRandomJanesEmail@randomJoesAndJanes.love", // who to contact in case of trouble
+    
+    // obligatory fields
+    "author": "RandomJane",  // needed to recover data from server app
+    "experiment_id": "MentalChronometry", // needed to recover data from server app
+    "description": "A classic cognitive psychology experiment",
+    "deployMethod" : "directLink", // set deployment method; use one of 'debug', 'localServer', 'MTurk', 'MTurkSandbox', 'Prolific', 'directLink'
+    
+    // optional fields
+    "contact_email": "someRandomJanesEmail@randomJoesAndJanes.love", // who to contact in case of trouble
 };
 
 // user does not (should not) change the following information

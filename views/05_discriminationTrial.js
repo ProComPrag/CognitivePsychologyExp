@@ -1,34 +1,39 @@
 var initDiscriminationPracticeView = function(index) {
-	var view = {};
-	view.name = 'trial';
-	view.template = $("#trial-view").html();
+    var view = {};
+    view.name = 'trial';
+    view.template = $("#trial-view").html();
+    var trialInfo = exp.data.practice_trials[2][index];
 
-	var trialInfo = exp.data.practice_trials[2][index];
-	console.log(trialInfo);
+    console.log(trialInfo);
 
-	$('main').html(Mustache.render(view.template, {
-		title: 'Practice',
-		text: config_views.discriminationTrial.text_f + exp.data.f_target + " and " + config_views.discriminationTrial.text_j + exp.data.j_target + '.'
-	}));
+    $('main').html(Mustache.render(view.template, {
+        title: 'Practice',
+        text: config_views.discriminationTrial.text_f + exp.data.f_target + " and " + config_views.discriminationTrial.text_j + exp.data.j_target + '.'
+    }));
 
-	discriminationTask(trialInfo, 'practice');
+    $('.progress-bar-container').addClass('nodisplay');
 
-	return view;
+    discriminationTask(trialInfo, 'practice');
+
+    return view;
 };
 
 var initDiscriminationView = function(index) {
-	var view = {};
-	view.name = 'trial';
-	view.template = $("#trial-view").html();
+    var view = {};
+    view.name = 'trial';
+    view.template = $("#trial-view").html();
+    var trialInfo = exp.data.trials[2][index];
+    var filled = index * (180 / config_general.viewSteps[exp.currentViewCounter]);
 
-	var trialInfo = exp.data.trials[2][index];
-	console.log(trialInfo);
+    console.log(trialInfo);
 
-	$('main').html(Mustache.render(view.template, {
-		text: config_views.discriminationTrial.text_f + exp.data.f_target + " and " + config_views.discriminationTrial.text_j + exp.data.j_target + '.'
-	}));
+    $('main').html(Mustache.render(view.template, {
+        text: config_views.discriminationTrial.text_f + exp.data.f_target + " and " + config_views.discriminationTrial.text_j + exp.data.j_target + '.'
+    }));
 
-	discriminationTask(trialInfo, 'trial');
+    $('#filled').css('width', filled);
 
-	return view;
+    discriminationTask(trialInfo, 'trial');
+
+    return view;
 };
