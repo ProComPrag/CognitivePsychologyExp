@@ -9,7 +9,7 @@ var reactionTimeTask = function(trialInfo, trialType) {
 	var pause = Math.floor(Math.random()*(2700-1200+1)+1200);
 	var dateStart, rt;
 
-	// if the stimulus in this trial is a circle, turns the sqaure to a circle
+	// if the stimulus in this trial is a circle, turns the square to a circle
 	// by addid css border radius to the sqaure
 	if (trialInfo['stimulus'] === 'circle') {
 		stimulus.css('border-radius', '50%');
@@ -122,7 +122,7 @@ var goNoGoTask = function(trialInfo, trialType) {
 		$('body').on('keyup', spaceListener);
 	};
 
-	// if the stimulus in this trial is a circle, turns the sqaure to a circle
+	// if the stimulus in this trial is a circle, turns the square to a circle
 	// by addid css border radius to the sqaure
 	if (trialInfo['stimulus'] === 'circle') {
 		$('#stimulus').css('border-radius', '50%');

@@ -4,10 +4,10 @@ var initIntroView = function() {
 	view.name = 'intro';
 	view.template = $('#intro-view').html();
 	$('main').html(Mustache.render(view.template, {
-		title: config_views.intro.title,
-		IDtext: config_views.intro.IDtext,
-		text: config_views.intro.text,
-		button: config_views.intro.buttonText
+	    title: config_views.intro.title,
+	    IDtext: config_views.intro.IDtext,
+	    text: config_views.intro.text,
+	    button: config_views.intro.buttonText
 	}));
 
 	if (config_deploy.deployMethod === 'Prolific') {

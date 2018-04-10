@@ -8,7 +8,7 @@ var initGoNoGoView = function(index) {
 	console.log(trialInfo);
 
 	$('main').html(Mustache.render(view.template, {
-		text: config_views.goNoGoTrial.text + exp.data.space_target + "."
+		text: ""
 	}));
 
 	goNoGoTask(trialInfo, 'trial');
@@ -27,7 +27,7 @@ var initGoNoGoPracticeView = function(index) {
 
 	$('main').html(Mustache.render(view.template, {
 		title: 'Practice',
-		text: config_views.goNoGoTrial.text + exp.data.space_target + "."
+		text: config_views.goNoGoTrial.text + exp.data.space_target + ". Otherwise, just wait and do nothing."
 	}));
 
 	goNoGoTask(trialInfo, 'practice');

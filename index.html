@@ -59,7 +59,7 @@
 		{{/ title }}
 		{{# text }}
 		<section class="text-container">
-			<p class="text">{{ text }}</p>
+			<p class="text"> {{{ text }}} </p>
 		</section>
 		{{/ text }}
 		<p class="id-field nodisplay">
@@ -91,7 +91,7 @@
 		{{/ title }}
 		{{# text }}
 		<section class="text-container">
-			<p class="text">{{ text }}</p>
+			<p class="text"> {{{ text }}}</p>
 		</section>
 		{{/ text }}
 		{{# button }}
@@ -106,6 +106,9 @@
 	<!-- instructions for each block -->
 	<script id="block-instructions-view" type="x-tmpl-mustache">
 	<div class="view">
+	  	{{# part }}
+		<h1 class="title">Instructions for Part {{ part }}</h1>
+		{{/ part }}
 		{{# text }}
 		<p>{{{ text }}}</p>
 		{{/ text }}
@@ -129,7 +132,7 @@
 	</div>
 	</script>
 
-	<!-- Pause View -->
+	<!-- Begin Exp View -->
 	<script id="begin-exp-view" type="x-tmpl-mustache">
 	<div class="view">
 		{{# text }}
@@ -137,7 +140,10 @@
 		{{/ text }}
 		{{^ text }}
 		<p>Now that you have aquainted yourself with the task, the actual task will begin.</p>
-		{{/ text }}
+                {{/ text }}
+	  	{{# reminder }}
+		<p>{{{ reminder }}}</p>
+		{{/ reminder }}
 		<button id="next">Next</button>
 	</div>
 	</script>
@@ -146,7 +152,7 @@
 	<script id="pause-view" type="x-tmpl-mustache">
 	<div class="view">
 		<h1>Pause</h1>
-		<p>This task is finished! To proceed to the next press 'next'.</p>
+		<p>This task is finished! Take a break to remain focused during the next part. To proceed to the next part, press 'next'.</p>
 		<button id="next">Next</button>
 	</div>
 	</script>
@@ -167,33 +173,20 @@
 		{{/ text }}
 		<form>
 			<p>
+				<label for="studentID">Student ID:</label>
+				<input type="text" name="studentID"  id="studentID" />
+	                </p>
+	  		<p>
 				<label for="age">Age:</label>
 				<input type="number" name="age" min="18" max="110" id="age" />
 			</p>
-			<p>
-				<label for="gender">Gender:</label>
-				<select id="gender" name="gender">
-					<option></option>
-					<option value="male">male</option>
-					<option value="female">female</option>
-					<option value="other">other</option>
-				</select>
-			</p>
-			<p>
-				<label for="education">Level of Education:</label>
-				<select id="education" name="education">
-					<option></option>
-					<option value="graduated_high_school">Graduated High School</option>
-					<option value="graduated_college">Graduated College</option>
-					<option value="higher_degree">Higher Degree</option>
-				</select>
-			</p>
+
 			<p>
 				<label for="languages" name="languages">Native Languages: <br /><span>(i.e. the language(s) spoken at home when you were a child)</</span></label>
 				<input type="text" id="languages"/>
 			</p>
 			<p class="comment-sect">
-				<label for="comments">Further comments</label>
+				<label for="comments">Further comments (optional)</label>
 				<textarea name="comments" id="comments"
 				rows="6" cols="40"></textarea>
 			</p>

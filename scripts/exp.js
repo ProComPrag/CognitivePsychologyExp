@@ -17,8 +17,10 @@ var prepareData = function() {
 		return comb;
 	};
 
-	// picks up a target shape for the go/no go task
-	var space_target = shuffleComb(['circle', 'square'])[0];
+    // picks up a target shape for the go/no go task
+    var shuffledShapes = shuffleComb(['circle', 'square']);
+    var space_target = shuffledShapes[0];
+    var space_nontarget = shuffledShapes[1];
 	// shuffles the stimuli list again to pick a stumulus for the f and j keys
 	var keys = shuffleComb(['circle', 'square']);
 	var f_target = keys[0];
@@ -95,7 +97,8 @@ var prepareData = function() {
 
 	var data = {
 		// info used in the texts of the slides
-		'space_target': space_target,
+	    'space_target': space_target,
+	    'space_nontarget': space_nontarget,
 		'f_target': f_target,
 		'j_target': j_target,
 

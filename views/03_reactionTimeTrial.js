@@ -4,7 +4,7 @@ var initReactionTimePracticeView = function(index) {
 	var trialInfo = exp.data.practice_trials[0][index];
 	view.name = 'practice';
 	view.template = $("#trial-view").html();
-	// renderts the template
+	// renders the template
 	$('main').html(Mustache.render(view.template, {
 		title: 'Practice',
 		text: config_views.reactionTimeTrial.text
@@ -24,9 +24,9 @@ var initReactionTimeView = function(index) {
 	var trialInfo = exp.data.trials[0][index];
 	view.name = 'trial';
 	view.template = $("#trial-view").html();
-	// renderts the template
+	// renders the template
 	$('main').html(Mustache.render(view.template, {
-		text: config_views.reactionTimeTrial.text
+		text: ""
 	}));
 
 	console.log(trialInfo);

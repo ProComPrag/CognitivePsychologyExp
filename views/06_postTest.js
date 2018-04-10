@@ -19,9 +19,8 @@ var initPostTestView = function() {
 			languages: $('#languages').val(),
 			comments: $('#comments').val().trim()
 		});*/
+	        exp.data.out.studentID = $('#studentID').val();
 		exp.data.out.age = $('#age').val();
-		exp.data.out.gender = $('#gender').val();
-		exp.data.out.education = $('#education').val();
 		exp.data.out.languages = $('#languages').val();
 		exp.data.out.comments = $('#comments').val().trim();
 		// moves to the next view
