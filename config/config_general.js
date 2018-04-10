@@ -24,19 +24,19 @@ var config_general = {
     'viewSteps': [1, // intro
 		  1, // instructions
 		  1, // block instructions 1
-		  2, // practice block 1
+		  5, // practice block 1
 		  1, // begin block 1
-		  2, // main trials block 1
+		  20, // main trials block 1
 		  1, // pause view
 		  1, // block instructions 2
-		  2, // practice block 2
+		  5, // practice block 2
 		  1, // begin block 2
-		  2, // main trials block 2
+		  20, // main trials block 2
 		  1, // pause view
 		  1, // block instructions 3
-		  2, // practice block 3
+		  5, // practice block 3
 		  1, // begin block 3
-		  2, // main trials block 3
+		  20, // main trials block 3
 		  1, // post survey
 		  1  // thanks view
 		 ] // how many steps (slides/trials/...) belong to each view
