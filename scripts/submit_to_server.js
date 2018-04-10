@@ -7,7 +7,7 @@ var submitResults = function(contactEmail, data) {
     // if isMTurk is not given, sets it to false
     isMTurk = typeof isMTurk !== 'undefined' ? isMTurk : false;
     // set a default contact email
-    contactEmail = typeof contactEmail !== 'undefined' ? contactEmail : "mchfranke@gmail.com";
+    contactEmail = typeof contactEmail !== 'undefined' ? contactEmail : "exprag@gmail.com";
 
     $.ajax({
         type: 'POST',

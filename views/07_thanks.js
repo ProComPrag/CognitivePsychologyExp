@@ -13,8 +13,7 @@ var initThanksView = function() {
         startDateTime: exp.data.startDate,
         totalExpTimeMinutes: (Date.now() - exp.data.startTime) / 60000,
         age: exp.data.out.age,
-        gender: exp.data.out.gender,
-        education: exp.data.out.education,
+        studentID: exp.data.out.studentID,
         languages: exp.data.out.languages,
         comments: exp.data.out.comments,
         userAgent: exp.data.userAgent
