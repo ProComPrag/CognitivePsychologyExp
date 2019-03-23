@@ -1,5 +1,45 @@
-const part_one_trial_info = {
-    forced_choice: [
+const canvas_dict = {
+    keyPress: {
+        circle: {
+            key1: "f",
+            key2: "j",
+            f: f_target,
+            j: j_target,
+            canvas: {
+                sort: 'grid',
+                elemSize: 100,
+                total: 1,
+                focalNumber: 1,
+                focalShape: 'circle',
+                focalColor: 'blue'
+            },
+            expected: 'circle' === f_target? f_target : j_target
+        },
+        square: {
+            key1: "f",
+            key2: "j",
+            f: f_target,
+            j: j_target,
+            expected: 'square' === f_target? f_target : j_target,
+            canvas: {
+                sort: 'grid',
+                elemSize: 100,
+                total: 1,
+                focalNumber: 1,
+                focalShape: 'square',
+                focalColor: 'blue'
+            }
+        }
+    },
+    reaction: {
+
+    }
+}
+
+
+
+const task_reaction = {
+    reaction: [
         {
             question: "What's on the bread?",
             picture: "images/question_mark_02.png",
@@ -15,24 +55,15 @@ const part_one_trial_info = {
     ],
 }
 
-const part_two_trial_info = {
-    multi_dropdown: [
-        {
-            sentence_chunk_1: "Some of the",
-            sentence_chunk_2: "are",
-            sentence_chunk_3: "today.",
-            choice_options_1: ["cats", "dogs"],
-            choice_options_2: ["happy", "hungry", "sad"]
-        },
-        {
-            sentence_chunk_1: "All of the",
-            sentence_chunk_2: "will be",
-            sentence_chunk_3: "tomorrow.",
-            choice_options_1: ["cats", "dogs"],
-            choice_options_2: ["happy", "hungry", "sad"]
-        }
+const task_discrimination_info = {
+    keyPress_main: [
+        _.flattenDeep(babeUtils.views.loop([babeUtils.views.loop(canvas_dict.keyPress.circle, 3), babeUtils.views.loop(canvas_dict.keyPress.square,2)],6))
+    ],
+    keyPress_practice: [
+        _.flattenDeep(babeUtils.views.loop([babeUtils.views.loop(canvas_dict.keyPress.circle, 2), babeUtils.views.loop(canvas_dict.keyPress.square,2)],3))
     ]
 }
 
 // random shuffling of trial information
-part_one_trial_info.multi_dropdown = _.shuffle(part_one_trial_info.multi_dropdown)
+task_discrimination_info.keyPress_practice = _.shuffle(task_discrimination_info.keyPress_practice)
+task_discrimination_info.keyPress_main = _.shuffle(task_discrimination_info.keyPress_main)

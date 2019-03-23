@@ -19,10 +19,11 @@ $("document").ready(function() {
             begin_real_goNoGo,
             pause_goNoGo,
             instructions_discrimination,
+            practice_discrimination,
             begin_real_discrimination,
+            task_discrimination,
             post_test,
-            thanks,
-            task_two_sentence_completion
+            thanks
         ],
         deploy: {
             experimentID: "INSERT_A_NUMBER",

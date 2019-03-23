@@ -162,9 +162,18 @@ const thanks = babeViews.thanks({
 */
 
 // part of the practice sample
-const task_one_2AFC = babeViews.forcedChoice({
-    trials: part_one_trial_info.forced_choice.length,
-    name: 'task_one',
-    trial_type: '2A_forced_choice',
-    data: part_one_trial_info.forced_choice
+
+const practice_discrimination = keyPress_mental({
+    trials: 5,
+    title: "Practice",
+    name: 'practice_discrimination',
+    trial_type: 'discirimination_practice',
+    data: task_discrimination_info.keyPress_practice[0]
+});
+
+const task_discrimination = keyPress_mental({
+    trials: 20,
+    name: 'task_discrimination',
+    trial_type: 'discirimination_main',
+    data: task_discrimination_info.keyPress_main[0]
 });
