@@ -1,3 +1,22 @@
+const circle_canvas = {
+        sort: 'grid',
+        elemSize: 100,
+        total: 1,
+        focalNumber: 1,
+        focalShape: 'circle',
+        focalColor: 'blue'
+};
+
+const square_canvas = {
+        sort: 'grid',
+        elemSize: 100,
+        total: 1,
+        focalNumber: 1,
+        focalShape: 'square',
+        focalColor: 'blue'
+};
+
+
 const canvas_dict = {
     keyPress: {
         circle: {
@@ -5,14 +24,7 @@ const canvas_dict = {
             key2: "j",
             f: f_target,
             j: j_target,
-            canvas: {
-                sort: 'grid',
-                elemSize: 100,
-                total: 1,
-                focalNumber: 1,
-                focalShape: 'circle',
-                focalColor: 'blue'
-            },
+            canvas: circle_canvas,
             expected: 'circle' === f_target? f_target : j_target
         },
         square: {
@@ -21,126 +33,62 @@ const canvas_dict = {
             f: f_target,
             j: j_target,
             expected: 'square' === f_target? f_target : j_target,
-            canvas: {
-                sort: 'grid',
-                elemSize: 100,
-                total: 1,
-                focalNumber: 1,
-                focalShape: 'square',
-                focalColor: 'blue'
-            }
+            canvas: square_canvas
         }
     },
     reaction_p: {
         circle: {
             stimulus: 'circle',
             QUD: "Press SPACE when you see a shape on the screen",
-            canvas: {
-                sort: 'grid',
-                elemSize: 100,
-                total: 1,
-                focalNumber: 1,
-                focalShape: 'circle',
-                focalColor: 'blue'
-            },
+            canvas: circle_canvas,
             target: 'circle'
         },
         square: {
             stimulus: 'square',
             QUD: "Press SPACE when you see a shape on the screen",
             target: 'square',
-            canvas: {
-                sort: 'grid',
-                elemSize: 100,
-                total: 1,
-                focalNumber: 1,
-                focalShape: 'square',
-                focalColor: 'blue'
-            }
+            canvas: square_canvas
         }
     },
     reaction: {
         circle: {
             stimulus: 'circle',
-            canvas: {
-                sort: 'grid',
-                elemSize: 100,
-                total: 1,
-                focalNumber: 1,
-                focalShape: 'circle',
-                focalColor: 'blue'
-            },
+            canvas: circle_canvas,
             target: 'circle'
         },
         square: {
             stimulus: 'square',
             target: 'square',
-            canvas: {
-                sort: 'grid',
-                elemSize: 100,
-                total: 1,
-                focalNumber: 1,
-                focalShape: 'square',
-                focalColor: 'blue'
-            }
+            canvas: square_canvas
         }
     },
     goNoGo: {
         circle: {
             stimulus: 'circle',
-            canvas: {
-                sort: 'grid',
-                elemSize: 100,
-                total: 1,
-                focalNumber: 1,
-                focalShape: 'circle',
-                focalColor: 'blue'
-            },
+            canvas: circle_canvas,
             target: space_target
         },
         square: {
             stimulus: 'square',
             target: space_target,
-            canvas: {
-                sort: 'grid',
-                elemSize: 100,
-                total: 1,
-                focalNumber: 1,
-                focalShape: 'square',
-                focalColor: 'blue'
-            }
+            canvas: square_canvas
         }
     },
     goNoGo_p: {
         circle: {
             stimulus: 'circle',
             QUD: `Press SPACE when you see a ${space_target}. Otherwise, just wait and do nothing.`,
-            canvas: {
-                sort: 'grid',
-                elemSize: 100,
-                total: 1,
-                focalNumber: 1,
-                focalShape: 'circle',
-                focalColor: 'blue'
-            },
+            canvas: circle_canvas,
             target: space_target
         },
         square: {
             stimulus: 'square',
             QUD: `Press SPACE when you see a ${space_target}. Otherwise, just wait and do nothing.`,
             target: space_target,
-            canvas: {
-                sort: 'grid',
-                elemSize: 100,
-                total: 1,
-                focalNumber: 1,
-                focalShape: 'square',
-                focalColor: 'blue'
-            }
+            canvas: square_canvas
         }
     }
 }
-
 
 
 const task_reaction_info = {
