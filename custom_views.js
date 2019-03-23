@@ -1,3 +1,12 @@
+const space_targets = _.shuffle(['circle', 'square']);
+const space_target = space_targets[0];
+const space_nontarget = space_targets[1];
+
+const key_targets = _.shuffle(['circle', 'square']);
+const f_target = key_targets[0];
+const j_target = key_targets[1];
+
+
 const multiple_dropdown = function(config) {
     const multi_dropdown_function = {
         name: config.name,
@@ -48,7 +57,7 @@ const multiple_dropdown = function(config) {
                 response1 = $("#response1");
                 response2 = $("#response2");
 
-                // flags to check if dropdown menus have been used 
+                // flags to check if dropdown menus have been used
                 var response_flags = [0, 0];
 
                 const display_button_checker = function(response_number) {
@@ -123,5 +132,3 @@ const task_two_sentence_completion = multiple_dropdown({
     trial_type: 'dropdown_sentence_completion',
     data: _.shuffle(part_two_trial_info.multi_dropdown)
 });
-
-

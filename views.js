@@ -12,36 +12,101 @@
 const intro = babeViews.intro({
     trials: 1,
     name: 'intro',
-    text:   `This is a sample introduction view.
-            <br />
-            <br />
-            The introduction view welcomes the participant and gives general information
-            about the experiment.
-            <br />
-            <br />
-            This is a minimal experiment with two views, one template, one custom made. It can serve as a starting point for programming your own experiment.`,
-    buttonText: 'begin the experiment'
+    text:   `Thank you for participating in our study. This study consists of <b>3 parts</b>.
+    Each part starts with instructions. Please <strong>read each block's instructions very carefully</strong>.
+    After the instructions there will be a few practice rounds before the main part of each block begins.
+    It is very important for this study that you <strong>put your undivided attention to the task</strong>.
+    The study will take at most 10 minutes, so please switch off messaging services or
+    any other things (like background music) that might distract you. Thank you for your cooperation!
+    `,
+    buttonText: 'Begin experiment'
 });
 
 const instructions = babeViews.instructions({
     trials: 1,
     name: 'instrucions',
-    title: 'General Instructions',
-    text:  `This is a sample instructions view.
-            <br />
-            <br />
-            Tell your participants what they are to do here.`,
-    buttonText: 'go to forced choice trials'
+    title: 'Instructions',
+    text:  `This experiment is about reaction times. We will show you pictures of geometrical shapes and ask you to respond in different ways.
+    In the first part, you should simply press a button as soon as you see anything.
+    In the second part, you should press a button when you see a particular shape but not when you see another.
+    In the third part, you should press one button for one shape and another button for another shape.
+    It is important that you try to <strong>BE AS FAST AS POSSIBLE</strong>, but also that you <strong>MAKE NO MISTAKES</strong>.
+    There will be breaks between each part during which you can relax and refocus.
+    We will give you detailed instructions and some practice trials at the beginning of each part.`,
+    buttonText: 'Next'
 });
 
-const instructionsPostTest = babeViews.instructions({
+const instructions_reaction = babeViews.instructions({
     trials: 1,
-    name: 'instructions_post_test',
-    title: 'Post Questionnaire',
-    text: `Next you will see a sample <a href='/'>Post Test view</a>. 
-    The default questions and answer options are in English, however, the whole questionnaire can be translated. In the following Post Test
-    sample the questions are in German.`
+    name: 'instructions_reaction',
+    title: 'Instructions for Part 1',
+    text: `You will see a blank screen for a while.
+    At some point a shape will appear on the screen.
+    Your task is to press the <strong>SPACE</strong> bar on your keyboard as soon as the shape appears.
+    <br>First you will go to a practice trial for this task.`,
+    buttonText: 'Next'
 });
+
+const begin_real_reaction = babeViews.begin({
+    trials: 1,
+    name: 'begin_reaction',
+    title: '',
+    text:  `Now that you have acquainted yourself with the procedure of the task, the actual experiment will begin.`
+});
+
+const pause_reaction = babeViews.instructions({
+    trials: 1,
+    name: 'pause_reaction',
+    title: 'Pause',
+    text: `This task is finished! Take a break to remain focused during the next part. To proceed to the next part, press 'next'.`
+});
+
+const instructions_goNoGo = babeViews.instructions({
+    trials: 1,
+    name: 'instructions_goNoGo',
+    title: 'Instructions for Part 2',
+    text: `In this task, again, you will see a blank screen and a shape will appear.
+    Your task is to press the <strong>SPACE</strong> bar only when you see <strong>${space_target}</strong>.
+    If you see a ${space_nontarget}, do not press anything and just <strong>wait for the ${space_nontarget} to disappear</strong>.
+    <br>First you will go to a practice trial for this task.`,
+});
+
+const begin_real_goNoGo = babeViews.begin({
+    trials: 1,
+    name: 'begin_goNoGo',
+    title: '',
+    text: `Now that you have acquainted yourself with the procedure of the task, the actual experiment will begin.<br>
+    Remember to press the <strong>SPACE</strong> bar only when you see <strong>${space_target}</strong>
+    and <strong>wait</strong> for the shape to disappear if it is a <strong>${space_nontarget}</strong>.`
+});
+
+const pause_goNoGo = babeViews.instructions({
+    trials: 1,
+    name: 'pause_goNoGo',
+    title: 'Pause',
+    text: `This task is finished! Take a break to remain focused during the next part. To proceed to the next part, press 'next'.`
+});
+
+const instructions_discrimination = babeViews.instructions({
+    trials: 1,
+    name: 'instructions_discrimination',
+    title: 'Instructions for Part 3',
+    text: `You will see a shape appearing on the screen. Press the key <strong>F</strong>
+    on the keyboard when you see <strong>${f_target}</strong> and the key <strong>J</strong>
+    when you see <strong>${j_target}</strong>.
+    <br>First you will go to a practice trial for this task.`
+});
+
+const begin_real_discrimination= babeViews.begin({
+    trials: 1,
+    name: 'begin_discrimination',
+    title: '',
+    text: `Now that you have acquainted yourself with the procedure of the task, the actual experiment will begin.<br>
+    Remember to press the key <strong>F</strong> on the keyboard when you see <strong>${f_target}</strong>
+    and the key <strong>J</strong> when you see <strong>${j_target}</strong>.`
+});
+
+
 
 // the post questionnaire can be translated
 const post_test = babeViews.postTest({
@@ -103,4 +168,3 @@ const task_one_2AFC = babeViews.forcedChoice({
     trial_type: '2A_forced_choice',
     data: part_one_trial_info.forced_choice
 });
-

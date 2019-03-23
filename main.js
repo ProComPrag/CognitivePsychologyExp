@@ -12,11 +12,17 @@ $("document").ready(function() {
         views_seq: [
             intro,
             instructions,
-            task_one_2AFC,
-            task_two_sentence_completion,
-            instructionsPostTest,
+            instructions_reaction,
+            begin_real_reaction,
+            pause_reaction,
+            instructions_goNoGo,
+            begin_real_goNoGo,
+            pause_goNoGo,
+            instructions_discrimination,
+            begin_real_discrimination,
             post_test,
             thanks,
+            task_two_sentence_completion
         ],
         deploy: {
             experimentID: "INSERT_A_NUMBER",
