@@ -163,17 +163,47 @@ const thanks = babeViews.thanks({
 
 // part of the practice sample
 
+const practice_reaction = space_mental({
+    trials: 5,
+    title: "Practice",
+    name: 'practice_reaction',
+    trial_type: 'reaction_practice',
+    data: task_reaction_info.space_practice
+})
+
+const task_reaction = space_mental({
+    trials: 20,
+    name: 'main_reaction',
+    trial_type: 'reaction_main',
+    data: task_reaction_info.space_main
+})
+
+const practice_goNoGo = space_mental({
+    trials: 5,
+    title: "Practice",
+    name: 'practice_goNoGo',
+    trial_type: 'goNoGo_practice',
+    data: task_goNoGo_info.goNoGo_practice
+})
+
+const task_goNoGO = space_mental({
+    trials: 20,
+    name: 'main_goNoGo',
+    trial_type: 'goNoGo_main',
+    data: task_goNoGo_info.goNoGo_main
+})
+
 const practice_discrimination = keyPress_mental({
     trials: 5,
     title: "Practice",
     name: 'practice_discrimination',
-    trial_type: 'discirimination_practice',
-    data: task_discrimination_info.keyPress_practice[0]
+    trial_type: 'discrimination_practice',
+    data: task_discrimination_info.keyPress_practice
 });
 
 const task_discrimination = keyPress_mental({
     trials: 20,
-    name: 'task_discrimination',
-    trial_type: 'discirimination_main',
-    data: task_discrimination_info.keyPress_main[0]
+    name: 'main_discrimination',
+    trial_type: 'discrimination_main',
+    data: task_discrimination_info.keyPress_main
 });

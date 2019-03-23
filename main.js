@@ -13,10 +13,14 @@ $("document").ready(function() {
             intro,
             instructions,
             instructions_reaction,
+            practice_reaction,
             begin_real_reaction,
+            task_reaction,
             pause_reaction,
             instructions_goNoGo,
+            practice_goNoGo,
             begin_real_goNoGo,
+            task_goNoGO,
             pause_goNoGo,
             instructions_discrimination,
             practice_discrimination,
@@ -35,8 +39,9 @@ $("document").ready(function() {
         progress_bar: {
             in: [
                 // list the view-names of the views for which you want a progress bar
-                "task_one",
-                "task_two"
+                "main_reaction",
+                "main_goNoGo",
+                "main_discrimination"
             ],
             style: "separate",
             width: 100
