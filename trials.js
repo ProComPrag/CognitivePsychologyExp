@@ -93,24 +93,24 @@ const canvas_dict = {
 
 const task_reaction_info = {
     space_main:
-        _.flattenDeep(babeUtils.views.loop([babeUtils.views.loop(canvas_dict.reaction.circle, 3), babeUtils.views.loop(canvas_dict.reaction.square,3)],5)),
+        _.flattenDeep(babeUtils.views.loop([canvas_dict.reaction.circle, canvas_dict.reaction.square],10)),
     space_practice:
-        _.flattenDeep(babeUtils.views.loop([babeUtils.views.loop(canvas_dict.reaction_p.circle, 1), babeUtils.views.loop(canvas_dict.reaction_p.square,2)],2))
+        _.flattenDeep(babeUtils.views.loop([canvas_dict.reaction_p.circle, canvas_dict.reaction_p.square],3))
 }
 
 const task_goNoGo_info = {
     goNoGo_main:
-        _.flattenDeep(babeUtils.views.loop([babeUtils.views.loop(canvas_dict.goNoGo.circle, 2), babeUtils.views.loop(canvas_dict.goNoGo.square,2)],9)),
+        _.flattenDeep(babeUtils.views.loop([canvas_dict.goNoGo.circle, canvas_dict.goNoGo.square],10)),
     goNoGo_practice:
-        _.flattenDeep(babeUtils.views.loop([babeUtils.views.loop(canvas_dict.goNoGo_p.circle, 1), babeUtils.views.loop(canvas_dict.goNoGo_p.square,1)],3))
+        _.flattenDeep(babeUtils.views.loop([canvas_dict.goNoGo_p.circle, canvas_dict.goNoGo_p.square],3))
 }
 
 const task_discrimination_info = {
     keyPress_main:
-        _.flattenDeep(babeUtils.views.loop([babeUtils.views.loop(canvas_dict.keyPress.circle, 3), babeUtils.views.loop(canvas_dict.keyPress.square,2)],6))
+        _.flattenDeep(babeUtils.views.loop([canvas_dict.keyPress.circle, canvas_dict.keyPress.square],10))
     ,
     keyPress_practice:
-        _.flattenDeep(babeUtils.views.loop([babeUtils.views.loop(canvas_dict.keyPress.circle, 2), babeUtils.views.loop(canvas_dict.keyPress.square,2)],3))
+        _.flattenDeep(babeUtils.views.loop([canvas_dict.keyPress.circle, canvas_dict.keyPress.square],3))
 
 }
 
