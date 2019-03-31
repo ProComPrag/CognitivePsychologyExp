@@ -14,7 +14,7 @@ The experiment consists of three blocks appearing in the following order:
 	*Recorded*: reaction time
 
 2. **Go/No-Go task**
-	
+
 	The participant presses the space bar whenever their target (one of the two stimuli) is n the screen
 
 	*Recorded*: the reaction time and the response
@@ -34,31 +34,6 @@ The experiment consists of three blocks appearing in the following order:
 ## Installing and running the experiment
 
 
-This project uses the following JS dependencies:
+1. Online Link:
 
-* [jQuery][1]
-* [Mustache templates][2]
-
-installed through npm (a package manager for JS libraries). If you do not have npm installed on your machine, you can follow the instructions on [their website][3].
-
-
-In the terminal on your machine do the following commands:
-
-```
-# clone the repo
-git clone (repo)
-
-# go to the main folder
-cd CognitivePsychologyExp
-
-# install the dependencies (requires installing [npm][3])
-npm install
-```
-
-open `index.html` in the browser to see the experiment
-
-
-
-[1]: https://jquery.com/ "jQuery"
-[2]: https://github.com/janl/mustache.js "Mustache"
-[3]: https://www.npmjs.com/ "npm"
+2. Offline: Clone the repository, run `npm install` and open `index.html`. 

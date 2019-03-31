@@ -113,7 +113,7 @@ const post_test = babeViews.postTest({
     trials: 1,
     name: 'post_test',
     title: 'Additional information',
-    text: 'Answering the following questions is optional, except that <strong>you have enter your student ID if you need course credit.</strong>',
+    text: 'Answering the following questions is optional, except that <strong>you have to enter your student ID if you need course credit.</strong>',
     languages_question: '<strong>Student ID</strong>',
     languages_more: '(obligatory for course credit!)',
     edu_question: 'Study program',
