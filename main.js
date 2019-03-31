@@ -30,10 +30,10 @@ $("document").ready(function() {
             thanks
         ],
         deploy: {
-            experimentID: "INSERT_A_NUMBER",
-            serverAppURL: "https://babe-demo.herokuapp.com/api/submit_experiment/",
-            deployMethod: "debug",
-            contact_email: "YOUREMAIL@wherelifeisgreat.you",
+            experimentID: "48",
+            serverAppURL: "https://mcmpact.ikw.uni-osnabrueck.de/babe/api/submit_experiment/",
+            deployMethod: "directLink",
+            contact_email: "michael.franke@uni-osnabrueck.de",
             prolificURL: "https://app.prolific.ac/submissions/complete?cc=SAMPLE1234"
         },
         progress_bar: {

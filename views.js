@@ -113,7 +113,14 @@ const post_test = babeViews.postTest({
     trials: 1,
     name: 'post_test',
     title: 'Additional information',
-    text: 'Answering the following questions is optional, but your answers will help us analyze our results.'
+    text: 'Answering the following questions is optional, except that <strong>you have enter your student ID if you need course credit.</strong>',
+    languages_question: '<strong>Student ID</strong>',
+    languages_more: '(obligatory for course credit!)',
+    edu_question: 'Study program',
+    edu_graduated_high_school: 'CogSci BSc',
+    edu_graduated_college: 'CogSci MSc',
+    edu_higher_degree: 'other'
+
 
     // You can change much of what appears here, e.g., to present it in a different language, as follows:
     // buttonText: 'Weiter',
