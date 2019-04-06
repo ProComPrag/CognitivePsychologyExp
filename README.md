@@ -15,13 +15,13 @@ The experiment consists of three blocks appearing in the following order:
 
 2. **Go/No-Go task**
 
-	The participant presses the space bar whenever their target (one of the two stimuli) is n the screen
+	The participant presses the space bar whenever their target (one of the two stimuli) is on the screen
 
 	*Recorded*: the reaction time and the response
 
 3. **Discrimination task**
 
-	The participant presses the **F** key on the keybord when there is one of the stimuli and the **J** key when there is the other one fo the stimuli on the screen.
+	The participant presses the **F** key on the keybord when there is one of the stimuli and the **J** key when there is the other one of the stimuli on the screen.
 
 	*Recorded*: the reaction time and the response
 
