@@ -14,7 +14,7 @@
 
 */
 
-const intro = magpieViews.intro({
+const intro = magpieViews.view_generator("intro", {
   trials: 1,
   name: 'intro',
   text: `Thank you for participating in our study. This study consists of <b>3 parts</b>.
