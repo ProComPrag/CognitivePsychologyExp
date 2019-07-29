@@ -1,4 +1,4 @@
-// initialises a babe experiment with babeInit
+// initialises a magpie experiment with magpieInit
 $("document")
   .ready(function () {
     // prevent scrolling when space is pressed
@@ -8,8 +8,8 @@ $("document")
       }
     };
 
-    // calls babeInit
-    babeInit({
+    // calls magpieInit
+    magpieInit({
       views_seq: [
             intro,
             instructions,
@@ -32,7 +32,7 @@ $("document")
         ],
       deploy: {
         experimentID: "48",
-        serverAppURL: "https://mcmpact.ikw.uni-osnabrueck.de/babe/api/submit_experiment/",
+        serverAppURL: "https://magpie-demo.herokuapp.com/api/submit_experiment/",
         deployMethod: "debug",
         contact_email: "michael.franke@uni-osnabrueck.de",
         prolificURL: "https://app.prolific.ac/submissions/complete?cc=SAMPLE1234"

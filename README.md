@@ -1,4 +1,4 @@
-# Classic Cognitive Psychology Experiment
+# Mental mentalChronometry - Classic Cognitive Psychology Experiment
 
 (description)
 
@@ -36,4 +36,4 @@ The experiment consists of three blocks appearing in the following order:
 
 1. Online Link:
 
-2. Offline: Clone the repository, run `npm install` and open `index.html`. 
+2. Offline: Clone the repository, run `npm install` and open `index.html`.

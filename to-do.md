@@ -27,7 +27,7 @@
 
 1. Text for typos
 2. template elems
-3. remove console.logs 
+3. remove console.logs
 4. data recordings
 5. starting dates (+/- the pause)
 

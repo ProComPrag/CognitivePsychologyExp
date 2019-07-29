@@ -5,11 +5,16 @@
     * trials: int - the number of trials this view will appear
     * name: string
 
-* More about the properties and functions of the wrapping views - https://github.com/babe-project/babe-project/blob/master/docs/views.md#wrapping-views-properties
+*Optional properties
+    * buttonText: string - the text on the button (default: 'next')
+    * text: string - the text to be displayed in this view
+    * title: string - the title of this view
+
+    * More about the properties and functions of the wrapping views - https://magpie-ea.github.io/magpie-docs/01_designing_experiments/01_template_views/#wrapping-views
 
 */
 
-const intro = babeViews.intro({
+const intro = magpieViews.intro({
   trials: 1,
   name: 'intro',
   text: `Thank you for participating in our study. This study consists of <b>3 parts</b>.
@@ -22,7 +27,7 @@ const intro = babeViews.intro({
   buttonText: 'Begin experiment'
 });
 
-const instructions = babeViews.view_generator("instructions", {
+const instructions = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'instrucions',
   title: 'Instructions',
@@ -36,7 +41,7 @@ const instructions = babeViews.view_generator("instructions", {
   buttonText: 'Next'
 });
 
-const instructions_reaction = babeViews.view_generator("instructions", {
+const instructions_reaction = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'instructions_reaction',
   title: 'Instructions for Part 1',
@@ -47,21 +52,21 @@ const instructions_reaction = babeViews.view_generator("instructions", {
   buttonText: 'Next'
 });
 
-const begin_real_reaction = babeViews.view_generator("begin", {
+const begin_real_reaction = magpieViews.view_generator("begin", {
   trials: 1,
   name: 'begin_reaction',
   title: '',
   text: `Now that you have acquainted yourself with the procedure of the task, the actual experiment will begin.`
 });
 
-const pause_reaction = babeViews.view_generator("instructions", {
+const pause_reaction = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'pause_reaction',
   title: 'Pause',
   text: `This task is finished! Take a break to remain focused during the next part. To proceed to the next part, press 'next'.`
 });
 
-const instructions_goNoGo = babeViews.view_generator("instructions", {
+const instructions_goNoGo = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'instructions_goNoGo',
   title: 'Instructions for Part 2',
@@ -71,7 +76,7 @@ const instructions_goNoGo = babeViews.view_generator("instructions", {
     <br>First you will go to a practice trial for this task.`,
 });
 
-const begin_real_goNoGo = babeViews.view_generator("begin", {
+const begin_real_goNoGo = magpieViews.view_generator("begin", {
   trials: 1,
   name: 'begin_goNoGo',
   title: '',
@@ -80,14 +85,14 @@ const begin_real_goNoGo = babeViews.view_generator("begin", {
     and <strong>wait</strong> for the shape to disappear if it is a <strong>${space_nontarget}</strong>.`
 });
 
-const pause_goNoGo = babeViews.view_generator("instructions", {
+const pause_goNoGo = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'pause_goNoGo',
   title: 'Pause',
   text: `This task is finished! Take a break to remain focused during the next part. To proceed to the next part, press 'next'.`
 });
 
-const instructions_discrimination = babeViews.view_generator("instructions", {
+const instructions_discrimination = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'instructions_discrimination',
   title: 'Instructions for Part 3',
@@ -97,7 +102,7 @@ const instructions_discrimination = babeViews.view_generator("instructions", {
     <br>First you will go to a practice trial for this task.`
 });
 
-const begin_real_discrimination = babeViews.view_generator("begin", {
+const begin_real_discrimination = magpieViews.view_generator("begin", {
   trials: 1,
   name: 'begin_discrimination',
   title: '',
@@ -109,7 +114,7 @@ const begin_real_discrimination = babeViews.view_generator("begin", {
 
 
 // the post questionnaire can be translated
-const post_test = babeViews.view_generator("post_test", {
+const post_test = magpieViews.view_generator("post_test", {
   trials: 1,
   name: 'post_test',
   title: 'Additional information',
@@ -139,33 +144,33 @@ const post_test = babeViews.view_generator("post_test", {
 });
 
 // the 'thanks' view is crucial; never delete it; it submits the results!
-const thanks = babeViews.view_generator("thanks", {
+const thanks = magpieViews.view_generator("thanks", {
   trials: 1,
   name: 'thanks',
   title: 'Thank you for taking part in this experiment!',
   prolificConfirmText: 'Press the button'
 });
 
-/** trial (babe's Trial Type Views) below
+/** trial (magpie's Trial Type Views) below
 
 * Obligatory properties
 
     - trials: int - the number of trials this view will appear
-    - name: string - the name of the view type as it shall be known to _babe (e.g. for use with a progress bar)
+    - name: string - the name of the view type as it shall be known to _magpie (e.g. for use with a progress bar)
     - trial_type: string - the name of the trial type as you want it to appear in the submitted data
     - data: array - an array of trial objects
 
 * Optional properties
-
     - pause: number (in ms) - blank screen before the fixation point or stimulus show
     - fix_duration: number (in ms) - blank screen with fixation point in the middle
     - stim_duration: number (in ms) - for how long to have the stimulus on the screen
-        More about trial life cycle - https://github.com/babe-project/babe-project/blob/master/docs/views.md#trial-views-lifecycle
+      More about trial life cycle - https://magpie-ea.github.io/magpie-docs/01_designing_experiments/04_lifecycles_hooks/
 
     - hook: object - option to hook and add custom functions to the view
-        More about hooks - https://github.com/babe-project/babe-project/blob/master/docs/views.md#trial-views-hooks
+      More about hooks - https://magpie-ea.github.io/magpie-docs/01_designing_experiments/04_lifecycles_hooks/
 
-* All about the properties of trial - https://github.com/babe-project/babe-project/blob/master/docs/views.md#properties-of-trial
+* All about the properties of trial views
+* https://magpie-ea.github.io/magpie-docs/01_designing_experiments/01_template_views/#trial-views
 */
 
 // part of the practice sample
