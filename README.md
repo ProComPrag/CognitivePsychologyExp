@@ -1,4 +1,4 @@
-# Mental mentalChronometry - Classic Cognitive Psychology Experiment
+# Mental Chronometry - Classic Cognitive Psychology Experiment
 
 (description)
 
