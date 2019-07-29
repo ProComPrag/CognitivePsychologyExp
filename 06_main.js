@@ -1,15 +1,16 @@
 // initialises a babe experiment with babeInit
-$("document").ready(function() {
+$("document")
+  .ready(function () {
     // prevent scrolling when space is pressed
-    window.onkeydown = function(e) {
-        if (e.keyCode == 32 && e.target == document.body) {
-            e.preventDefault();
-        }
+    window.onkeydown = function (e) {
+      if (e.keyCode == 32 && e.target == document.body) {
+        e.preventDefault();
+      }
     };
 
     // calls babeInit
     babeInit({
-        views_seq: [
+      views_seq: [
             intro,
             instructions,
             instructions_reaction,
@@ -29,22 +30,22 @@ $("document").ready(function() {
             post_test,
             thanks
         ],
-        deploy: {
-            experimentID: "48",
-            serverAppURL: "https://mcmpact.ikw.uni-osnabrueck.de/babe/api/submit_experiment/",
-            deployMethod: "directLink",
-            contact_email: "michael.franke@uni-osnabrueck.de",
-            prolificURL: "https://app.prolific.ac/submissions/complete?cc=SAMPLE1234"
-        },
-        progress_bar: {
-            in: [
+      deploy: {
+        experimentID: "48",
+        serverAppURL: "https://mcmpact.ikw.uni-osnabrueck.de/babe/api/submit_experiment/",
+        deployMethod: "debug",
+        contact_email: "michael.franke@uni-osnabrueck.de",
+        prolificURL: "https://app.prolific.ac/submissions/complete?cc=SAMPLE1234"
+      },
+      progress_bar: {
+        in: [
                 // list the view-names of the views for which you want a progress bar
                 "main_reaction",
                 "main_goNoGo",
                 "main_discrimination"
             ],
-            style: "separate",
-            width: 100
-        }
+        style: "separate",
+        width: 100
+      }
     });
-});
+  });
