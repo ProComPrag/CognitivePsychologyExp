@@ -31,9 +31,9 @@ The experiment consists of three blocks appearing in the following order:
 * The **response** whether the reaction was correct or incorrect
 
 
-## Installing and running the experiment
+## Running the experiment
 
 
-1. Online Link:
+1. Online Link: [here](https://magpie-exp-mental-chronometry.netlify.com)
 
 2. Offline: Clone the repository, run `npm install` and open `index.html`.
