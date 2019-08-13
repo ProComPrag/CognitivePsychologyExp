@@ -30,6 +30,9 @@ The experiment consists of three blocks appearing in the following order:
 
 * The **response** whether the reaction was correct or incorrect
 
+## \_magpie
+
+This experiment was built using [\_magpie](https://magpie-ea.github.io/magpie-site/index.html). 
 
 ## Running the experiment
 
