@@ -33,9 +33,9 @@ $("document")
       deploy: {
         experimentID: "68",
         serverAppURL: "https://mcmpact.ikw.uni-osnabrueck.de/babe/api/submit_experiment/",
-        deployMethod: "directLink",
+        deployMethod: "Prolific",
         contact_email: "michael.franke@uni-osnabrueck.de",
-        prolificURL: "https://app.prolific.ac/submissions/complete?"
+          prolificURL: "https://app.prolific.co/submissions/complete?cc=B19B1F30"
       },
       progress_bar: {
         in: [

@@ -118,13 +118,13 @@ const post_test = magpieViews.view_generator("post_test", {
   trials: 1,
   name: 'post_test',
   title: 'Additional information',
-  text: 'Answering the following questions is optional, except that <strong>you have to enter your student ID if you need course credit.</strong>',
-  languages_question: '<strong>Student ID</strong>',
-  languages_more: '(obligatory for course credit!)',
-  edu_question: 'Study program',
-  edu_graduated_high_school: 'CogSci BSc',
-  edu_graduated_college: 'CogSci MSc',
-  edu_higher_degree: 'other'
+  text: 'Answering the following questions is optional.</strong>',
+  languages_question: '<strong>Handedness</strong>',
+  languages_more: '(the hand you usually write with)',
+  edu_question: 'Education',
+  edu_graduated_high_school: 'elementary school',
+  edu_graduated_college: 'high school / college',
+  edu_higher_degree: 'university'
 
 
   // You can change much of what appears here, e.g., to present it in a different language, as follows:
