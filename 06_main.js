@@ -31,11 +31,11 @@ $("document")
             thanks
         ],
       deploy: {
-        experimentID: "68",
-        serverAppURL: "https://mcmpact.ikw.uni-osnabrueck.de/babe/api/submit_experiment/",
-        deployMethod: "Prolific",
-        contact_email: "michael.franke@uni-osnabrueck.de",
-          prolificURL: "https://app.prolific.co/submissions/complete?cc=197A750D"
+        experimentID: "FILL THIS",
+        serverAppURL: "fill in server URL",
+        deployMethod: "debug",
+        contact_email: "your_name@where_life_is_great.org",
+          prolificURL: "FILL THIS"
       },
       progress_bar: {
         in: [
